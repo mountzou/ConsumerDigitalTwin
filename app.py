@@ -37,5 +37,15 @@ def energy_production():
     solar_power_data = cur.fetchall()
     return render_template("energy-production.html", solar_power_data = json.dumps(solar_power_data))
 
+@app.route("/cdmp/")
+def cdmp():
+    headers = {"X-API-TOKEN": '8a3cb21d-be27-466d-a797-54fae21a0d8a'}
+    url = "https://twinergy.s5labs.eu/api/query/6158624e-be36-4a5f-9374-f04bb5b10e0d"
+    response = requests.get(url, headers=headers)
+    response1 = response.json()
+    cdmp_data = json.dumps(response1, indent=4)
+
+    return render_template("cdmp.html", cdmp_data = cdmp_data)
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,181 @@
+<div class="col-lg-4">
+    <div class="page-separator">
+        <div class="page-separator__text">Thermal Comfort</div>
+    </div>
+
+    <div class="card">
+        <div class="card-header p-0 nav border-0">
+            <div class="row no-gutters flex" role="tablist">
+                <div class="col-auto">
+                    <div class="p-card-header d-flex align-items-center">
+                        <div class="h2 mb-0 mr-3"><i
+                                class="material-icons text-primary mr-4pt">sentiment_satisfied</i></div>
+                        <div class="flex">
+                            <h2 class="h2 mb-0 ml11">Slightly Warm
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-sm">
+        <div class="card-body" style="padding: 1.18rem;">
+            <div class="row">
+                <div class="col-6">
+                    <div class="chart" style="height: 192px;">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                            </div>
+                        </div>
+                        <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
+                            <h2 class="m-0">82 %</h2>
+                            <strong style="font-size:10px;">THERMAL COMFORT</strong>
+                        </div>
+                        <canvas class="chart-canvas position-relative z-1 chartjs-render-monitor"
+                                id="dashboard-thermal-comfort" data-chart-legend="#attendanceDoughnutChartLegend"
+                                data-chart-line-background-color="primary;accent;gray.700;gray"
+                                style="display: block; height: 242px; width: 323px;" width="646" height="524">
+
+                        </canvas>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="nav border-0">
+                        <div class="row no-gutters flex" style="padding-bottom:10px;">
+                            <div class="col-auto">
+                                <div class="d-flex align-items-center">
+                                    <div class="h2 mb-0 mr-3" style="font-size:17px;">0.60 clo</div>
+                                    <div class="flex">
+                                        <p class="card-title">Clothing Insulation</p>
+                                        <p class="card-subtitle text-50">
+                                            <small class="text-center"
+                                                   style="font-family:Josefin Sans; font-size:10px;">TYPICAL SUMMER
+                                                OUTFIT</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters flex"
+                             style="border-top: 1px solid #dfe2e6; padding-top:10px; padding-bottom:10px;">
+                            <div class="col-auto">
+                                <div class="d-flex align-items-center">
+                                    <div class="h2 mb-0 mr-3" style="font-size:17px;">1.4 met</div>
+                                    <div class="flex">
+                                        <p class="card-title">Activity Level</p>
+                                        <p class="card-subtitle text-50">
+                                            <small class="text-center"
+                                                   style="font-family:Josefin Sans; font-size:10px;">
+                                                INTENSITY ACTIVITY</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="col-lg-8">
+
+    <div class="page-separator">
+        <div class="page-separator__text">Indoor Environmental Analysis</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="card ">
+                <div class="card-header pb-0 border-0 d-flex">
+                    <div class="flex">
+                        <div class="h2 mb-0" id="latest-indoor-temperature">{{ env_indoor[0] }} °C</div>
+                        <p class="card-title">Indoor Air Temperature</p>
+                    </div>
+                    <i class="material-icons text-50">device_thermostat</i>
+                </div>
+                <div class="card-body">
+                    <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
+                        <h3 class="mb-0" style="font-family:Josefin Sans; font-size:24px;">23.4 °C</h3>
+                        <small class="text-uppercase" style="font-family:Josefin Sans; font-size:10px;">DAILY MEAN
+                            INDOOR TEMPERATURE</small>
+                    </div>
+                    <div class="text-50 mb-16pt">
+                        <canvas class="chart-canvas js-update-chart-line js-update-chart-area chartjs-render-monitor"
+                                id="meteo-indoor-temperature"
+                                style="display: block; height: 180px; width: 254px;" width="508" height="500">
+                        </canvas>
+                    </div>
+                </div>
+
+                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                    <div>
+                        <div class="d-flex align-items-center">
+                            <small class="text-50"
+                                   style="font-family:Josefin Sans; font-size:14px;">
+                                than yesterday </small>
+                            <i class="material-icons text-primary mr-4pt"></i>
+                            <div class="text-70"
+                                 style="font-family:Josefin Sans; font-size:14px;">
+                                %
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="card ">
+                <div class="card-header pb-0 border-0 d-flex">
+                    <div class="flex">
+                        <div class="h2 mb-0" id="latest-indoor-humidity">{{ env_indoor[1] }} %</div>
+                        <p class="card-title">Indoor Relative Humidity</p>
+                    </div>
+                    <i class="material-icons text-50">opacity</i>
+                </div>
+                <div class="card-body">
+                    <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
+                        <h3 class="mb-0" style="font-family:Josefin Sans; font-size:24px;">56.2 %</h3>
+                        <small class="text-uppercase" style="font-family:Josefin Sans; font-size:10px;">DAILY MEAN
+                            RELATIVE HUMIDITY</small>
+                    </div>
+                    <div class="text-50 mb-16pt">
+                        <canvas class="chart-canvas js-update-chart-line js-update-chart-area chartjs-render-monitor"
+                                id="meteo-indoor-humidity"
+                                style="display: block; height: 180px; width: 254px;" width="508" height="500">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                    <div>
+                        <div class="d-flex align-items-center">
+                            <small class="text-50"
+                                   style="font-family:Josefin Sans; font-size:14px;">
+                                than yesterday </small>
+                            <i class="material-icons text-primary mr-4pt"></i>
+                            <div class="text-70"
+                                 style="font-family:Josefin Sans; font-size:14px;">
+                                %
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

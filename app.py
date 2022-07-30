@@ -1,6 +1,7 @@
 from flask import (Flask, render_template, redirect, url_for, request)
 from flask_mysqldb import MySQL
 import json
+import requests
 
 app = Flask(__name__)
 

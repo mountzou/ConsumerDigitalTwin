@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15px !important;
+  padding-top: calc(0rem + 0px) !important;
+}
+
+#submit_preferences {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.card-subtitle {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px !important;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.irs-grid {
+  font-size: 12px;
+}
+
+.hero-header {
+  color: white;
+}
+
+.hero-body {
+  color: rgb(48, 57, 86, .8);
+  font-family: Josefin Sans, Helvetica Neue, Arial, sans-serif;
+}
+
+.form-group-spacer {
+  margin-top: 40px;
+}
+
+[dir="ltr"] .measure-hero-lead {
+  max-width: 900px;
+}
+
+στοιχείο {}
+
+[dir="ltr"] .material-icons {
+  vertical-align: middle;
+}
+
+[dir="ltr"] .material-icons {
+  font-family: Material Icons;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+  font-display: block;
+}
+
+[dir="ltr"] *, [dir="ltr"] ::after, [dir="ltr"] ::before {
+  box-sizing: border-box;
+}
+
+[dir="ltr"] .page-num-timeline__item-current .page-num {
+  color: white;
+}
+
+[dir="ltr"] .lead {
+  text-align: justify;
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+[dir="ltr"] .page-separator::before {
+    content: "";
+    height: 2px;
+    background-color: rgba(0, 0, 0, .1);
+    width: 100%;
+    top: 50%;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+[dir="ltr"] .border-left-3 {
+  border-left: 2.5px solid #e9edf2 !important;
+  border-left-color: rgb(233, 237, 242);
+}
+
+[dir="ltr"] .border-left-primary {
+  border-left: 2.5px solid #ffba4d !important;
+  border-left-color: rgb(233, 237, 242);
+}
+
+
+[dir="ltr"] .pl-md-32pt, [dir="ltr"] .px-md-32pt {
+  padding-left: 1.2rem !important;
+}
+
+[dir="ltr"] .btn-primary.focus, [dir="ltr"] .btn-primary:focus, [dir="ltr"] .btn-primary:hover {
+  color: #fff;
+  background-color: #ffba4d;
+  border-color: #ffba4d;
+}
+
+[dir="ltr"] .dropdown-notifications .dropdown-toggle .material-icons {
+  font-size: 1.5rem;
+}
+
+[dir="ltr"] .nav-tabs-primary {
+  border-bottom: 2px solid #ffba4d;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: .9;
+}
+
+.outfit-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px !important;
+}
+
+.text-notifications {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px !important;
+  margin-top: 5px;
+}
+
+.text-banner {
+  font-family: Josefin Sans, Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.carousel-description {
+  font-size: 0.9rem;
+}
+
+.bg-thermal {
+  background-color: #7fdd62 !important;
+}
+
+[dir=ltr] .img-fluid {
+  width: 100% !important;
+  max-width: none
+}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | Consumer Digital Twin
+{% endblock title %}
+
+{% block content %}
+<div class="pt-32pt">
+    <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        {% include 'breadcrumb.html' %}
+    </div>
+    <div class="container page__container">
+        <div class="page-section">
+            {% include 'dashboard-alert.html' %}
+            <div class="row mb-lg-8pt">
+                    {% include 'dashboard-thermal-comfort.html' %}
+            </div>
+            <div class="row mb-lg-8pt">
+                    {% include 'dashboard-well-being.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

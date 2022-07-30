@@ -1,0 +1,111 @@
+<div class="mdk-header js-mdk-header mb-0" data-domfactory-upgraded="mdk-header" data-effects="" data-fixed=""
+     data-retarget-mouse-scroll=""
+     id="header" style="padding-top: 64px;">
+    <div class="mdk-header-layout__content page-content ">
+        <div class="mdk-header__bg">
+            <div class="mdk-header__bg-front"></div>
+            <div class="mdk-header__bg-rear"></div>
+        </div>
+        <div class="mdk-header__content">
+
+            <div class="navbar navbar-expand pr-0 navbar-dark-dodger-blue navbar-shadow mdk-header--fixed"
+                 data-primary="data-primary" id="default-navbar">
+                <button class="navbar-toggler w-auto mr-16pt d-block rounded-0" data-toggle="sidebar" type="button">
+                    <span class="material-icons">short_text</span>
+                </button>
+
+                <a class="navbar-brand mr-16pt" href="/">
+              <span class="avatar avatar-sm-basic-bar mr-0 mr-lg-8pt">
+                  <span class="avatar-title-navbar">
+                    <img alt="TwinERGY Logo" src="{{ url_for('static', filename='images/logo/black_logo.png') }}"
+                         width=100%/>
+                  </span>
+              </span>
+                </a>
+
+                <span class="d-none d-md-flex align-items-center mr-16pt">
+
+              <span class="avatar avatar-sm-basic-navbar mr-12pt">
+                  <span class="avatar-title rounded navbar-avatar">
+                      <i class="material-icons">accessibility_new</i>
+                  </span>
+              </span>
+
+              <small class="flex d-flex flex-column">
+                  <strong class="navbar-text-100">Thermal Comfort</strong>
+                  <!--                  <span class="navbar-text-50">Ok</span>-->
+              </small>
+          </span>
+
+                <span class="d-none d-md-flex align-items-center mr-16pt">
+
+              <span class="avatar avatar-sm-basic-navbar mr-12pt">
+                  <span class="avatar-title rounded navbar-avatar"><i
+                          class="material-icons">sentiment_satisfied</i>
+                  </span>
+              </span>
+
+              <small class="flex d-flex flex-column">
+                  <strong class="navbar-text-100">Well-being Status</strong>
+                  <span class="navbar-text-50">Excellent</span>
+              </small>
+          </span>
+
+                <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Energy Production</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Energy Consumption</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Thermal Comfort</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Well-being</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Preferences</a>
+                    </li>
+                </ul>
+
+                <!-- <div class="flex"></div> -->
+
+                <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-link d-flex align-items-center dropdown-toggle" data-caret="false"
+                           data-toggle="dropdown"
+                           href="/">
+
+                      <span class="avatar avatar-sm-basic-navbar mr-8pt2">
+
+                          <span class="avatar-title rounded-circle bg-primary-yellow">
+                              <i class="material-icons">account_box</i>
+                          </span>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header">
+                            <strong>Account</strong>
+                        </div>
+                        <a class="dropdown-item" href="/"><i
+                                class="material-icons font-size-16pt text-warning">security</i>Security</a>
+                        <hr>
+                        <a class="dropdown-item" href="/"><i
+                                class="material-icons font-size-16pt text-warning">email</i>Contact</a>
+                        <hr>
+                         <a class="dropdown-item" href="/logout/"><i class="material-icons font-size-16pt text-warning">logout</i>Logout</a>
+                      </div>
+
+                      </span>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

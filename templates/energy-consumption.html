@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas class=""
+            id="air-condition"
+            style="display: block; height: 180px; width: 254px;" width="508" height="500">
+    </canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/static/vendor/Chart.min.js"></script>
+<script src="/static/js/chartjs.js"></script>
+<script src="/static/js/chartjs-rounded-bar.js"></script>
+    <script>
+new Chart(document.getElementById("air-condition"), {
+    type: 'line',
+    data: {
+      labels: {{ air_condition_time | safe }},
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: {{ air_condition_consumption }}
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+      }
+    }
+});
+</script>
+
+</body>
+</html>

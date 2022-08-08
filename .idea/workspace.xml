@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Energy Consumption | HVAC">
+    <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Install pandas">
+      <change afterPath="$PROJECT_DIR$/templates/clothing-insulation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-consumption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/breadcrumb.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/breadcrumb.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/energy-consumption-asset.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption-asset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/energy-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/energy-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-production.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +197,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659949190272</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Install pandas">
+      <created>1659950647305</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1659950647305</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Install pandas">
+      <created>1659950811134</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1659950811134</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +234,7 @@
     <MESSAGE value="CDMP" />
     <MESSAGE value="Minimal issue on breadcrumb" />
     <MESSAGE value="Energy Consumption | HVAC" />
-    <option name="LAST_COMMIT_MESSAGE" value="Energy Consumption | HVAC" />
+    <MESSAGE value="Install pandas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Install pandas" />
   </component>
 </project>

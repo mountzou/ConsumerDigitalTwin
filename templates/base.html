@@ -4,29 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        {% block title %}
-        {% endblock title %}
-    </title>
+    <title> {% block title %}{% endblock title %} | Consumer Digital Twin </title>
 
     <link href="https://fonts.googleapis.com/css?family=Exo+2:600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/material-icons.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/preloader.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/twinergy.css')}}">
+    {% block html_css %}{% endblock html_css %}
+    {% block js_script_header %}{% endblock js_script_header %}
 </head>
 <body class="layout-sticky-subnav layout-default">
-
-<!--<div class="preloader">-->
-<!--    <div class="sk-double-bounce">-->
-<!--        <div class="sk-child sk-double-bounce1"></div>-->
-<!--        <div class="sk-child sk-double-bounce2"></div>-->
-<!--    </div>-->
-<!--</div>-->
 
 <div class="mdk-header-layout js-mdk-header-layout">
     <div class="mdk-header-layout__content page-content ">
@@ -39,10 +28,6 @@
 </div>
 
 {% include 'footer.html' %}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
 
 <!-- jQuery -->
 <script src="static/vendor/jquery.min.js"></script>
@@ -63,13 +48,12 @@
 <!-- Global Settings -->
 <script src="static/js/settings.js"></script>
 
+<!-- Chart JS -->
 <script src="static/vendor/Chart.min.js"></script>
 <script src="static/js/chartjs.js"></script>
 <script src="static/js/chartjs-rounded-bar.js"></script>
 
-<!-- Custom Scripts -->
-<script src="static/js/dashboard-comfort.js" data-env="{{ env_indoor }}" data-env-list="{{ env_indoor_list }}"></script>
-<script src="static/js/dashboard-well-being.js" data-air="{{ air_indoor }}" data-air-list="{{ air_indoor_list }}"></script>
+{% block js_scripts %}{% endblock js_scripts %}
 
 </body>
 </html>

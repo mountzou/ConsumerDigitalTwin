@@ -4,16 +4,21 @@
         <h2 class="mb-0">Consumer Digital Twin</h2>
         <ol class="breadcrumb p-0 m-0">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            {% if breadcrumb_level_two == '' %}
+                <li class="breadcrumb-item active">{{ breadcrumb_level_one }}</li>
+            {% else %}
+                <li class="breadcrumb-item">{{ breadcrumb_level_one }}</li>
+                <li class="breadcrumb-item active">{{ breadcrumb_level_two }}</li>
+            {% endif %}
         </ol>
     </div>
 </div>
 
 <div class="row" role="tablist">
     <div class="col-auto mb-3">
-        <a href="clothing_insulation.php" class="btn btn-outline-yellow">Clothing Insulation</a>
+        <a href="" class="btn btn-outline-yellow">Clothing Insulation</a>
     </div>
     <div class="col-auto mb-3">
-        <a href="browse.php" class="btn btn-outline-yellow">Browse Applications</a>
+        <a href="" class="btn btn-outline-yellow">Browse Applications</a>
     </div>
 </div>

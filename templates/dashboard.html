@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}
-Dashboard | Consumer Digital Twin
-{% endblock title %}
+<!-- Add the title for the specific page -->
+{% block title %}Dashboard{% endblock title %}
+
+<!-- Import any extra .css files for the specific page -->
+{% block html_css %}{% endblock html_css %}
+
+<!-- Set the breadcrumb levels for the specific page -->
+{% set breadcrumb_level_one = 'Dashboard' %}
+{% set breadcrumb_level_two = '' %}
+
+<!-- Import any extra .js files for the specific page -->
+{% block js_scripts %}
+<script src="static/js/dashboard-comfort.js" data-env="{{ env_indoor }}" data-env-list="{{ env_indoor_list }}"></script>
+<script src="static/js/dashboard-well-being.js" data-air="{{ air_indoor }}" data-air-list="{{ air_indoor_list }}"></script>
+{% endblock js_scripts %}
 
 {% block content %}
 <div class="pt-32pt">

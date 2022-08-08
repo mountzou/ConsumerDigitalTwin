@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 import json
 import requests
 import datetime
+import pandas
 
 app = Flask(__name__)
 

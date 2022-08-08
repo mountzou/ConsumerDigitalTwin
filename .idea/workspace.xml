@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Minimal issue on breadcrumb">
-      <change afterPath="$PROJECT_DIR$/templates/energy-consumption.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base-consumption.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/energy-consumption-asset.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/async_heart_rate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/async_heart_rate_chart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cdmp.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cdmp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-production.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/energy-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659175883192</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Minimal issue on breadcrumb">
+      <created>1659900252202</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659900252202</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

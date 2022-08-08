@@ -1,40 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <canvas class=""
-            id="air-condition"
-            style="display: block; height: 180px; width: 254px;" width="508" height="500">
-    </canvas>
+{% extends "base-consumption.html" %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/static/vendor/Chart.min.js"></script>
-<script src="/static/js/chartjs.js"></script>
-<script src="/static/js/chartjs-rounded-bar.js"></script>
-    <script>
+{% block title %}
+Energy Consumption | Consumer Digital Twin
+{% endblock title %}
+
+{% block content %}
+<div class="pt-32pt">
+    <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        {% include 'breadcrumb.html' %}
+    </div>
+    <div class="container page__container">
+        <div class="page-section">
+            {% include 'energy-consumption-asset.html' %}
+        </div>
+    </div>
+</div>
+
+<script>
 new Chart(document.getElementById("air-condition"), {
     type: 'line',
     data: {
       labels: {{ air_condition_time | safe }},
       datasets: [
         {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          label: "HVAC | Hourly Energy Consumption",
+            borderColor: "rgb(127, 221, 98)",
+            backgroundColor: "rgb(127, 221, 98, .1)",
+            borderWidth: 2,
+             fill: true,
           data: {{ air_condition_consumption }}
         }
       ]
     },
     options: {
-      legend: { display: false },
-      title: {
-        display: true,
-      }
-    }
+            elements: {
+                point: {
+                    radius: 1.4
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: true,
+                        maxTicksLimit: 4,
+                        callback: function(value, index, values) {
+                            return value + ' kWh';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Energy Consumption (kWh)",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 4,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 6
+                }
+            },
+            tooltips: {
+                enabled: true,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return 'Energy Consumption: ' + tooltipItems.yLabel + ' kWh';
+                    },
+                }
+            },
+        }
 });
-</script>
 
-</body>
-</html>
+Chart.defaults.global.defaultFontFamily = 'Josefin Sans';
+
+Chart.Legend.prototype.afterFit = function() {
+    this.height = this.height + 20;
+};
+
+</script>
+{% endblock content %}

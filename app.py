@@ -44,6 +44,35 @@ def clothing_insulation():
 
     return render_template("clothing-insulation.html")
 
+@app.route("/preferences/")
+def preferences():
+    cur = mysql.connection.cursor()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '1') ORDER BY preference_timestamp DESC''')
+    preference_thermal_comfort = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '2') ORDER BY preference_timestamp DESC''')
+    preference_well_being = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '3') ORDER BY preference_timestamp DESC''')
+    preference_energy_flexibility = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '4') ORDER BY preference_timestamp DESC''')
+    preference_eco_friendliness = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '5') ORDER BY preference_timestamp DESC''')
+    preference_financial_balalnce = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '6') ORDER BY preference_timestamp DESC''')
+    preference_water_heater = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '7') ORDER BY preference_timestamp DESC''')
+    preference_freezer = cur.fetchone()
+
+    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0], preference_eco_friendliness[0], preference_financial_balalnce[0], preference_water_heater[0], preference_freezer[0]]
+
+    return render_template("preferences.html", preferences_importance = preferences_importance)
+
 @app.route("/energy_consumption/")
 def cdmp():
     headers = {"X-API-TOKEN": '8a3cb21d-be27-466d-a797-54fae21a0d8a'}

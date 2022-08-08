@@ -14,9 +14,28 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/twinergy.css')}}">
     {% block html_css %}{% endblock html_css %}
 
-    <script src="../static/vendor/Chart.min.js"></script>
-    <script src="../static/js/chartjs.js"></script>
-    <script src="../static/js/chartjs-rounded-bar.js"></script>
+    <!-- jQuery -->
+    <script src="{{url_for('static', filename='vendor/jquery.min.js')}}"></script>
+
+    <!-- Range Slider -->
+    <script src="{{url_for('static', filename='vendor/ion.rangeSlider.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/ion-rangeslider.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/preferences_validate.js')}}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{url_for('static', filename='vendor/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap.min.js')}}"></script>
+
+    <!-- Perfect Scrollbar -->
+    <script src="{{url_for('static', filename='vendor/perfect-scrollbar.min.js')}}"></script>
+
+    <!-- MDK -->
+    <script src="{{url_for('static', filename='vendor/material-design-kit.js')}}"></script>
+
+    <!-- App JS -->
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
 </head>
 <body class="layout-sticky-subnav layout-default">
 
@@ -31,25 +50,6 @@
 </div>
 
 {% include 'footer.html' %}
-
-<!-- jQuery -->
-<script src="../static/vendor/jquery.min.js"></script>
-
-<!-- Bootstrap -->
-<script src="../static/vendor/popper.min.js"></script>
-<script src="../static/vendor/bootstrap.min.js"></script>
-
-<!-- Perfect Scrollbar -->
-<script src="../static/vendor/perfect-scrollbar.min.js"></script>
-
-<!-- DOM Factory -->
-<script src="../static/vendor/dom-factory.js"></script>
-
-<!-- App JS -->
-<script src="../static/js/app.js"></script>
-
-<!-- Global Settings -->
-<script src="../static/js/settings.js"></script>
 
 </body>
 </html>

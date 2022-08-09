@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title> {% block title %}{% endblock title %} | Consumer Digital Twin </title>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/material-icons.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/twinergy.css')}}">
+    {% block html_css %}{% endblock html_css %}
+
+    {% block js_script_header %}{% endblock js_script_header %}
+</head>
+<body class="layout-sticky-subnav layout-default">
+
+<div class="mdk-header-layout js-mdk-header-layout">
+    <div class="mdk-header-layout__content page-content ">
+        {% include 'navbar.html' %}
+
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+<!-- jQuery -->
+<script src="static/vendor/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="static/vendor/popper.min.js"></script>
+<script src="static/vendor/bootstrap.min.js"></script>
+
+<!-- Perfect Scrollbar -->
+<script src="static/vendor/perfect-scrollbar.min.js"></script>
+
+<!-- DOM Factory -->
+<script src="static/vendor/dom-factory.js"></script>
+
+<!-- App JS -->
+<script src="static/js/app.js"></script>
+
+<!-- Global Settings -->
+<script src="static/js/settings.js"></script>
+
+{% block js_scripts %}{% endblock js_scripts %}
+
+</body>
+</html>

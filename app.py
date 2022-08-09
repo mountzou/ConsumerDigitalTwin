@@ -4,6 +4,7 @@ import json
 import requests
 import datetime
 import pandas
+import time
 
 app = Flask(__name__)
 
@@ -43,6 +44,25 @@ def energy_production():
 def clothing_insulation():
 
     return render_template("clothing-insulation.html")
+
+@app.route("/helpdesk/", methods =["GET", "POST"])
+def helpdesk():
+
+    if request.method == "POST":
+
+        presentDate = datetime.datetime.now()
+        unix_timestamp = (int(datetime.datetime.timestamp(presentDate) * 1000))
+
+        subject = request.form.get("subject")
+        message = request.form.get("message")
+
+        cur = mysql.connection.cursor()
+        cur.execute('''INSERT INTO helpdesk_tickets VALUES (%s, 1, "chrismountzou@gmail.com", "%s", "%s") ''', (unix_timestamp, subject, message))
+        mysql.connection.commit()
+
+        return render_template("helpdesk.html")
+
+    return render_template("helpdesk.html")
 
 @app.route("/preferences/")
 def preferences():

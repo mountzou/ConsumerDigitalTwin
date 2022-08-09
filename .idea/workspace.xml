@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Install pandas">
-      <change afterPath="$PROJECT_DIR$/static/css/ion-rangeslider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base-preferences.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/preferences.html" afterDir="false" />
+    <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Preferences - CDT">
+      <change afterPath="$PROJECT_DIR$/templates/base-helpdesk.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/helpdesk-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/helpdesk.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/twinergy.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/twinergy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-consumption.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-production.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/energy-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/energy-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-production.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659950811134</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Preferences - CDT">
+      <created>1659975668947</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1659975668947</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +238,7 @@
     <MESSAGE value="Minimal issue on breadcrumb" />
     <MESSAGE value="Energy Consumption | HVAC" />
     <MESSAGE value="Install pandas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Install pandas" />
+    <MESSAGE value="Preferences - CDT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preferences - CDT" />
   </component>
 </project>

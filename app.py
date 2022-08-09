@@ -15,6 +15,35 @@ app.config['MYSQL_DB'] = 'consume5_twinERGY'
 
 mysql = MySQL(app)
 
+def prefences_importance_method():
+
+    cur = mysql.connection.cursor()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '1') ORDER BY preference_timestamp DESC''')
+    preference_thermal_comfort = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '2') ORDER BY preference_timestamp DESC''')
+    preference_well_being = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '3') ORDER BY preference_timestamp DESC''')
+    preference_energy_flexibility = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '4') ORDER BY preference_timestamp DESC''')
+    preference_eco_friendliness = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '5') ORDER BY preference_timestamp DESC''')
+    preference_financial_balalnce = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '6') ORDER BY preference_timestamp DESC''')
+    preference_water_heater = cur.fetchone()
+
+    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '7') ORDER BY preference_timestamp DESC''')
+    preference_freezer = cur.fetchone()
+
+    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0], preference_eco_friendliness[0], preference_financial_balalnce[0], preference_water_heater[0], preference_freezer[0]]
+
+    return preferences_importance
+
 @app.route("/")
 @app.route("/index/")
 @app.route("/dashboard/")
@@ -64,34 +93,51 @@ def helpdesk():
 
     return render_template("helpdesk.html")
 
-@app.route("/preferences/")
+@app.route("/preferences/", methods =["GET", "POST"])
 def preferences():
+
     cur = mysql.connection.cursor()
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '1') ORDER BY preference_timestamp DESC''')
-    preference_thermal_comfort = cur.fetchone()
+    if request.method == "POST":
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '2') ORDER BY preference_timestamp DESC''')
-    preference_well_being = cur.fetchone()
+        presentDate = datetime.datetime.now()
+        unix_timestamp = (int(datetime.datetime.timestamp(presentDate)))
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '3') ORDER BY preference_timestamp DESC''')
-    preference_energy_flexibility = cur.fetchone()
+        importnace_thermal_comfort = request.form.get("preference_thermal_comfort")
+        importnace_well_being = request.form.get("preference_well_being")
+        importnace_water_heater = request.form.get("preference_water_heater")
+        importnace_freezer = request.form.get("preference_freezer")
+        importnace_flexibility = request.form.get("preference_energy_flexibility")
+        importnace_eco_friendliness = request.form.get("preference_eco_friendly")
+        importance_financial = request.form.get("preference_financial_balance")
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '4') ORDER BY preference_timestamp DESC''')
-    preference_eco_friendliness = cur.fetchone()
+        importance_dict = {1: "Not Important", 2: "Slightly Important", 3: "Important", 4: "Fairly Important", 5: "Very Important" }
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '5') ORDER BY preference_timestamp DESC''')
-    preference_financial_balalnce = cur.fetchone()
+        preference_thermal_comfort = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_thermal_comfort)])
+        preference_well_being = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_well_being)])
+        preference_water_heater = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_water_heater)])
+        preference_freezer = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_freezer)])
+        preference_flexibility = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_flexibility)])
+        preference_eco_friendliness = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_eco_friendliness)])
+        preference_financial = (list(importance_dict.keys())[list(importance_dict.values()).index(importance_financial)])
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '6') ORDER BY preference_timestamp DESC''')
-    preference_water_heater = cur.fetchone()
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Thermal Comfort', 1, "%s" , %s) ''', (preference_thermal_comfort, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Well-Being', 2, "%s" , %s) ''', (preference_well_being, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Energy Flexibility', 3, "%s" , %s) ''', (preference_flexibility, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Eco-Friendliness', 4, "%s" , %s) ''', (preference_eco_friendliness, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Financial Balance', 5, "%s" , %s) ''', (preference_financial, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Water Heater', 6, "%s" , %s) ''', (preference_water_heater, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Electric Freezer', 7, "%s" , %s) ''', (preference_freezer, unix_timestamp))
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '7') ORDER BY preference_timestamp DESC''')
-    preference_freezer = cur.fetchone()
+        mysql.connection.commit()
 
-    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0], preference_eco_friendliness[0], preference_financial_balalnce[0], preference_water_heater[0], preference_freezer[0]]
+        prefences_importance = prefences_importance_method()
 
-    return render_template("preferences.html", preferences_importance = preferences_importance)
+        return render_template("preferences.html", preferences_importance = prefences_importance)
+
+    prefences_importance = prefences_importance_method()
+
+    return render_template("preferences.html", preferences_importance = prefences_importance)
 
 @app.route("/energy_consumption/")
 def cdmp():

@@ -23,8 +23,8 @@ app.config['MYSQL_DB'] = 'consume5_twinERGY'
 
 mysql = MySQL(app)
 
-def prefences_importance_method():
 
+def prefences_importance_method():
     cur = mysql.connection.cursor()
 
     cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '1') ORDER BY preference_timestamp DESC''')
@@ -48,9 +48,12 @@ def prefences_importance_method():
     cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '7') ORDER BY preference_timestamp DESC''')
     preference_freezer = cur.fetchone()
 
-    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0], preference_eco_friendliness[0], preference_financial_balalnce[0], preference_water_heater[0], preference_freezer[0]]
+    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0],
+                              preference_eco_friendliness[0], preference_financial_balalnce[0],
+                              preference_water_heater[0], preference_freezer[0]]
 
     return preferences_importance
+
 
 @app.route("/")
 @app.route("/index/")
@@ -76,9 +79,9 @@ def rout():
 
     token_use = root.get('tokens')
 
-    print('Token gives {0} access'.format(token_use.Tokens[0].Role))
+    return render_template("dashboard.html", token=token_use.Tokens[
+        0].Role, env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
 
-    return render_template("dashboard.html", token=token_use.Tokens[0].Role, env_indoor = environmental_indoor_latest, env_indoor_list = json.dumps(environmental_indoor_list), air_indoor = air_indoor_latest, air_indoor_list = json.dumps(air_indoor_list))
 
 @app.route("/energy_production/")
 def energy_production():
@@ -86,18 +89,17 @@ def energy_production():
     # Fetch data related to the Energy Production.
     cur.execute('''SELECT * FROM energy_production''')
     solar_power_data = cur.fetchall()
-    return render_template("energy-production.html", solar_power_data = json.dumps(solar_power_data))
+    return render_template("energy-production.html", solar_power_data=json.dumps(solar_power_data))
+
 
 @app.route("/clothing_insulation/")
 def clothing_insulation():
-
     return render_template("clothing-insulation.html")
 
-@app.route("/helpdesk/", methods =["GET", "POST"])
+
+@app.route("/helpdesk/", methods=["GET", "POST"])
 def helpdesk():
-
     if request.method == "POST":
-
         presentDate = datetime.datetime.now()
         unix_timestamp = (int(datetime.datetime.timestamp(presentDate) * 1000))
 
@@ -105,20 +107,20 @@ def helpdesk():
         message = request.form.get("message")
 
         cur = mysql.connection.cursor()
-        cur.execute('''INSERT INTO helpdesk_tickets VALUES (%s, 1, "chrismountzou@gmail.com", "%s", "%s") ''', (unix_timestamp, subject, message))
+        cur.execute('''INSERT INTO helpdesk_tickets VALUES (%s, 1, "chrismountzou@gmail.com", "%s", "%s") ''', (
+            unix_timestamp, subject, message))
         mysql.connection.commit()
 
         return render_template("helpdesk.html")
 
     return render_template("helpdesk.html")
 
-@app.route("/preferences/", methods =["GET", "POST"])
-def preferences():
 
+@app.route("/preferences/", methods=["GET", "POST"])
+def preferences():
     cur = mysql.connection.cursor()
 
     if request.method == "POST":
-
         presentDate = datetime.datetime.now()
         unix_timestamp = (int(datetime.datetime.timestamp(presentDate)))
 
@@ -130,33 +132,48 @@ def preferences():
         importnace_eco_friendliness = request.form.get("preference_eco_friendly")
         importance_financial = request.form.get("preference_financial_balance")
 
-        importance_dict = {1: "Not Important", 2: "Slightly Important", 3: "Important", 4: "Fairly Important", 5: "Very Important" }
+        importance_dict = {1: "Not Important", 2: "Slightly Important", 3: "Important", 4: "Fairly Important",
+                           5: "Very Important"}
 
-        preference_thermal_comfort = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_thermal_comfort)])
-        preference_well_being = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_well_being)])
-        preference_water_heater = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_water_heater)])
+        preference_thermal_comfort = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_thermal_comfort)])
+        preference_well_being = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_well_being)])
+        preference_water_heater = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_water_heater)])
         preference_freezer = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_freezer)])
-        preference_flexibility = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_flexibility)])
-        preference_eco_friendliness = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_eco_friendliness)])
-        preference_financial = (list(importance_dict.keys())[list(importance_dict.values()).index(importance_financial)])
+        preference_flexibility = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_flexibility)])
+        preference_eco_friendliness = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_eco_friendliness)])
+        preference_financial = (
+            list(importance_dict.keys())[list(importance_dict.values()).index(importance_financial)])
 
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Thermal Comfort', 1, "%s" , %s) ''', (preference_thermal_comfort, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Well-Being', 2, "%s" , %s) ''', (preference_well_being, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Energy Flexibility', 3, "%s" , %s) ''', (preference_flexibility, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Eco-Friendliness', 4, "%s" , %s) ''', (preference_eco_friendliness, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Financial Balance', 5, "%s" , %s) ''', (preference_financial, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Water Heater', 6, "%s" , %s) ''', (preference_water_heater, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Electric Freezer', 7, "%s" , %s) ''', (preference_freezer, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Thermal Comfort', 1, "%s" , %s) ''', (
+            preference_thermal_comfort, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Well-Being', 2, "%s" , %s) ''', (
+            preference_well_being, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Energy Flexibility', 3, "%s" , %s) ''', (
+            preference_flexibility, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Eco-Friendliness', 4, "%s" , %s) ''', (
+            preference_eco_friendliness, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Financial Balance', 5, "%s" , %s) ''', (
+            preference_financial, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Water Heater', 6, "%s" , %s) ''', (
+            preference_water_heater, unix_timestamp))
+        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Electric Freezer', 7, "%s" , %s) ''', (
+            preference_freezer, unix_timestamp))
 
         mysql.connection.commit()
 
         prefences_importance = prefences_importance_method()
 
-        return render_template("preferences.html", preferences_importance = prefences_importance)
+        return render_template("preferences.html", preferences_importance=prefences_importance)
 
     prefences_importance = prefences_importance_method()
 
-    return render_template("preferences.html", preferences_importance = prefences_importance)
+    return render_template("preferences.html", preferences_importance=prefences_importance)
+
 
 @app.route("/energy_consumption/")
 def cdmp():
@@ -170,13 +187,15 @@ def cdmp():
     air_condition_consumption = []
     air_condition_time = []
 
-    for x in range(0,168,1):
-        d = datetime.datetime.strptime(cdmp_data_json[1][x]['DemandMeasurement']['observedDateTime'], '%Y-%m-%dT%H:%M:%S.%fZ')
+    for x in range(0, 168, 1):
+        d = datetime.datetime.strptime(
+            cdmp_data_json[1][x]['DemandMeasurement']['observedDateTime'], '%Y-%m-%dT%H:%M:%S.%fZ')
         air_condition_consumption.append(cdmp_data_json[1][x]['DemandMeasurement']['totalConsumptionHourly'][0])
         print(air_condition_consumption)
         air_condition_time.append(datetime.date.strftime(d, "%d/%m/%y - %H:%M"))
 
-    return render_template("energy-consumption.html", air_condition_time = air_condition_time, air_condition_consumption = air_condition_consumption)
+    return render_template("energy-consumption.html", air_condition_time=air_condition_time, air_condition_consumption=air_condition_consumption)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

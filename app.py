@@ -190,7 +190,6 @@ def cdmp():
         d = datetime.datetime.strptime(
             cdmp_data_json[1][x]['DemandMeasurement']['observedDateTime'], '%Y-%m-%dT%H:%M:%S.%fZ')
         air_condition_consumption.append(cdmp_data_json[1][x]['DemandMeasurement']['totalConsumptionHourly'][0])
-        print(air_condition_consumption)
         air_condition_time.append(datetime.date.strftime(d, "%d/%m/%y - %H:%M"))
 
     return render_template("energy-consumption.html", air_condition_time=air_condition_time, air_condition_consumption=air_condition_consumption)

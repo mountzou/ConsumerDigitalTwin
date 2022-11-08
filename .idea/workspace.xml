@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Helpdesk - CDT">
+      <change afterPath="$PROJECT_DIR$/static/js/power-load.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/energy-consumption-chart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-consumption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/energy-consumption-asset.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption-asset.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
         <option value="Setup Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>

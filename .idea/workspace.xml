@@ -17,6 +17,7 @@
       <list>
         <option value="HTML File" />
         <option value="Python Script" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>

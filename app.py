@@ -11,7 +11,7 @@ import datetime
 import time
 
 # Import scan_api library to connect with iSCAN DB
-# from scan_api import open_api
+from scan_api import open_api
 
 app = Flask(__name__)
 

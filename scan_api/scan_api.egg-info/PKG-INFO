@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: scan-api
-Version: 6.0.0
-Summary: Python HAL REST API for IES web services
-Home-page: https://www.iesve.com/
-Author: Integrated Environmental Solutions
-Author-email: pete.kirkham@iesve.com
-License: MIT

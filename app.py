@@ -67,7 +67,18 @@ def rout():
     air_indoor_latest = cur.fetchone()
     cur.execute('''SELECT user_co, user_tvoc, user_timestamp FROM user_well_being_air WHERE user_id=1 ORDER BY user_timestamp LIMIT 60''')
     air_indoor_list = cur.fetchall()
-    return render_template("dashboard.html", env_indoor = environmental_indoor_latest, env_indoor_list = json.dumps(environmental_indoor_list), air_indoor = air_indoor_latest, air_indoor_list = json.dumps(air_indoor_list))
+
+    _token = "ghmgwr.xLF7Tm50OYe6x_FudBWPW6vR0.CnhEWIll7KPQxF0deT_79OvYMlG_FlC"
+
+    _rootURL = "https://iscan-research.azurewebsites.net/project/TwinergyAthens"
+
+    root = open_api(_rootURL, _token)
+
+    token_use = root.get('tokens')
+
+    print('Token gives {0} access'.format(token_use.Tokens[0].Role))
+
+    return render_template("dashboard.html", token=token_use.Tokens[0].Role, env_indoor = environmental_indoor_latest, env_indoor_list = json.dumps(environmental_indoor_list), air_indoor = air_indoor_latest, air_indoor_list = json.dumps(air_indoor_list))
 
 @app.route("/energy_production/")
 def energy_production():

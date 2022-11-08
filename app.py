@@ -1,13 +1,21 @@
+# Import flash framework to develop a web-based application in Python 3.8
 from flask import (Flask, render_template, redirect, url_for, request)
 from flask_mysqldb import MySQL
+
 import json
 import requests
-import datetime
+
 import pandas
+
+import datetime
 import time
+
+# Import scan_api library to connect with iSCAN DB
+from scan_api import open_api
 
 app = Flask(__name__)
 
+# Credentials to connect with mySQL DB of CDT UPAT
 app.config['MYSQL_HOST'] = 'eu15.tmd.cloud'
 app.config['MYSQL_USER'] = 'consume5_twinERGY'
 app.config['MYSQL_PASSWORD'] = 'w*}S2x1pKMM='

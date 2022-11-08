@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Helpdesk - CDT">
-      <change beforePath="$PROJECT_DIR$/.idea/Flask - Consumer_Digital_Twin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flask - Consumer_Digital_Twin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/breadcrumb.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/breadcrumb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard-alert.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard-alert.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,8 +127,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.app" />
-      <item itemvalue="Python.DBoperations" />
       <item itemvalue="Python.cdt" />
+      <item itemvalue="Python.DBoperations" />
     </list>
     <recent_temporary>
       <list>

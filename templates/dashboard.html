@@ -7,13 +7,15 @@
 {% block html_css %}{% endblock html_css %}
 
 <!-- Set the breadcrumb levels for the specific page -->
-{% set breadcrumb_level_one = 'Dashboard2' %}
+{% set breadcrumb_level_one = 'Dashboard' %}
 {% set breadcrumb_level_two = '' %}
 
 <!-- Import any extra .js files for the specific page -->
 {% block js_scripts %}
 <script src="static/js/dashboard-comfort.js" data-env="{{ env_indoor }}" data-env-list="{{ env_indoor_list }}"></script>
 <script src="static/js/dashboard-well-being.js" data-air="{{ air_indoor }}" data-air-list="{{ air_indoor_list }}"></script>
+<script src="static/js/dashboard-energy-consumption.js"></script>
+<script src="static/js/dashboard-energy-production.js"></script>
 {% endblock js_scripts %}
 
 {% block content %}
@@ -24,6 +26,12 @@
     <div class="container page__container">
         <div class="page-section">
             {% include 'dashboard-alert.html' %}
+            <div class="row mb-lg-8pt">
+                    {% include 'dashboard-energy.html' %}
+            </div>
+            <div class="row mb-lg-8pt">
+                    {% include 'dashboard-renewable.html' %}
+            </div>
             <div class="row mb-lg-8pt">
                     {% include 'dashboard-thermal-comfort.html' %}
             </div>

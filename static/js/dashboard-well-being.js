@@ -9,14 +9,16 @@ $(document).ready(function() {
     var indoor_co2 = []
     var indoor_tvoc = []
 
+    var latest_iaq = list_of_indoor_air[0][2]
+
     list_of_indoor_air.forEach(element => {
         indoor_co2.push(element[0]);
-        indoor_tvoc.push(element[1] * 100);
+        indoor_tvoc.push(element[1]);
         timestamps.push(element[2]);
     });
 
-    $('#latest-quality-co2').html(indoor_co2.at(-1) + ' ppm');
-    $('#latest-quality-tvoc').html(indoor_tvoc.at(-1) * 0.01 + ' ppb');
+    $('#latest-quality-co2').html(indoor_co2.at(0) + ' ppm');
+    $('#latest-quality-tvoc').html(indoor_tvoc.at(0)+ ' ppm');
 
     var graphTargetIndoorAirPollutants = $("#meteo-quality-air-pollutants");
     var graphTargetWellBeingLevel = $("#dashboard-well-being");
@@ -29,7 +31,7 @@ $(document).ready(function() {
                 borderColor: "#ffba4d",
                 backgroundColor: "#ffba4d",
                 borderWidth: 2,
-                data: indoor_co2,
+                data: indoor_co2.reverse(),
                 fill: false
             },
             {
@@ -38,7 +40,7 @@ $(document).ready(function() {
                 borderColor: "#7fdd62",
                 backgroundColor: "#7fdd62",
                 borderWidth: 2,
-                data: indoor_tvoc,
+                data: indoor_tvoc.reverse(),
                 fill: false
             }
         ]
@@ -108,18 +110,6 @@ $(document).ready(function() {
                     }
                 },
             },
-        }
-    });
-
-    var barGraph = new Chart(graphTargetWellBeingLevel, {
-        type: 'doughnut',
-        data: meteoComfortLevelData,
-        options: {
-            elements: {
-                arc: {
-                    roundedCornersFor: 0
-                }
-            }
         }
     });
 

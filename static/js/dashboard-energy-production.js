@@ -1,77 +1,44 @@
 $(document).ready(function() {
 
-    var attr_env_list = document.querySelector('script[data-env-list]');
-    var data_env_list = attr_env_list.getAttribute('data-env-list');
-
-    const list_of_indoor_environment = JSON.parse(data_env_list);
-
-    var timestamps = []
-    var indoor_temperature = []
-    var indoor_humidity = []
-
-    list_of_indoor_environment.forEach(element => {
-        indoor_temperature.push(element[0]);
-        indoor_humidity.push(element[1]);
-        timestamps.push(element[2]);
-    });
-
-
-    var meteoIndoorTemperatureData = {
-        labels: timestamps,
+    var monthlyMonthlyEnergyProductionData = {
+        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
         datasets: [{
-            label: "Indoor Temperature",
-            type: "line",
-            borderColor: "#ffba4d",
-            backgroundColor: "#ffba4d",
-            borderWidth: 2,
-            data: indoor_temperature.reverse(),
-            fill: false
-        }]
-    };
-
-    var meteoIndoorHumidityData = {
-        labels: timestamps,
-        datasets: [{
-            label: "Indoor Humidity",
-            type: "line",
+            label: "Energy Production",
+            type: "bar",
             borderColor: "#7fdd62",
             backgroundColor: "#7fdd62",
-            borderWidth: 2,
-            data: indoor_humidity.reverse(),
-            fill: false
+            data: [10, 10, 20, 30, 50, 30, 10, 40, 30, 20, 10, 40]
         }]
     };
 
-    var meteoComfortLevelData = {
-        labels: ["Thermal Comfort Level", "Thermal Comfort Level Supplument"],
+    var monthlyDailyEnergyProductionData = {
+        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         datasets: [{
-            label: "Thermal Comfort",
-            data: [82, 18],
-            backgroundColor: [
-                "#ffba4d",
-                "#EEEEEE",
-            ]
+            label: "Energy Production",
+            type: "bar",
+            borderColor: "#7fdd62",
+            backgroundColor: "#7fdd62",
+            data: [10, 10, 20, 30, 50, 30, 10, 40, 30, 20, 10, 40, 55, 42, 44, 10, 10, 4, 5, 6]
         }]
     };
 
-    var graphTargetIndoorTemperature = $("#meteo-indoor-temperature");
-    var graphTargetIndoorHumidity = $("#meteo-indoor-humidity");
-    var graphTargetComfortLevel = $("#dashboard-thermal-comfort");
+    var graphTargetMonthlyEnergyProduction = $("#dashboard-monthly-energy-production");
+    var graphTargetDailyEnergyProduction = $("#dashboard-daily-energy-production");
 
-    var barGraph = new Chart(graphTargetIndoorTemperature, {
-        type: 'line',
-        data: meteoIndoorTemperatureData,
+    var barGraph = new Chart(graphTargetMonthlyEnergyProduction, {
+        type: 'bar',
+        data: monthlyMonthlyEnergyProductionData,
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
                         padding: 12,
                         fontFamily: "Josefin Sans",
-                        beginAtZero: false,
+                        beginAtZero: true,
                         autoSkip: true,
                         maxTicksLimit: 6,
                         callback: function(value, index, values) {
-                            return value + " °C";
+                            return value + " kWh";
                         },
                     }
                 }],
@@ -97,27 +64,27 @@ $(document).ready(function() {
                         return 'Time: ' + tooltipItems[0].xLabel;
                     },
                     label: function(tooltipItems, data) {
-                        return tooltipItems.yLabel + ' °C';
+                        return tooltipItems.yLabel + ' kWh';
                     },
                 }
             },
         }
     });
 
-    var barGraph = new Chart(graphTargetIndoorHumidity, {
-        type: 'line',
-        data: meteoIndoorHumidityData,
+    var barGraph = new Chart(graphTargetDailyEnergyProduction, {
+        type: 'bar',
+        data: monthlyDailyEnergyProductionData,
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
                         padding: 12,
                         fontFamily: "Josefin Sans",
-                        beginAtZero: false,
+                        beginAtZero: true,
                         autoSkip: true,
                         maxTicksLimit: 6,
                         callback: function(value, index, values) {
-                            return value + " %";
+                            return value + " kWh";
                         },
                     }
                 }],
@@ -143,22 +110,10 @@ $(document).ready(function() {
                         return 'Time: ' + tooltipItems[0].xLabel;
                     },
                     label: function(tooltipItems, data) {
-                        return tooltipItems.yLabel + ' %';
+                        return tooltipItems.yLabel + ' kWh';
                     },
                 }
             },
-        }
-    });
-
-    var barGraph = new Chart(graphTargetComfortLevel, {
-        type: 'doughnut',
-        data: meteoComfortLevelData,
-        options: {
-            elements: {
-                arc: {
-                    roundedCornersFor: 0
-                }
-            }
         }
     });
 

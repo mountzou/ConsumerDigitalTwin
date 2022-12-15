@@ -13,6 +13,8 @@ import time
 # Import scan_api library to connect with iSCAN DB
 from scan_api import open_api
 
+from thermal_comfort import pmv_ppd
+
 app = Flask(__name__)
 
 # Credentials to connect with mySQL DB of CDT UPAT
@@ -23,6 +25,23 @@ app.config['MYSQL_DB'] = 'consume5_twinERGY'
 
 mysql = MySQL(app)
 
+def pmvDescription(pmv):
+    if (-0.5 <= pmv <= 0.5):
+        return 'Neutral'
+    elif (-1.5 <= pmv < -0.5):
+        return 'Slightly Cool'
+    elif (0.5 <= pmv < 1.5):
+        return 'Slightly Warm'
+    elif (-2.5 <= pmv < -1.5):
+        return 'Cool'
+    elif (1.5 <= pmv < 2.5):
+        return 'Warm'
+    elif (pmv > 2.5):
+        return 'Hot'
+    elif (pmv < -2.5):
+        return 'Cold'
+    else:
+        return 'In progress..'
 
 def prefences_importance_method():
     cur = mysql.connection.cursor()
@@ -61,25 +80,45 @@ def prefences_importance_method():
 def rout():
     cur = mysql.connection.cursor()
     # Fetch data related to the Thermal Comfort for the Dashboard.
-    cur.execute('''SELECT meteo_temperature_1, meteo_humidity_2 FROM weather_data_indoor ORDER BY meteo_timestamp LIMIT 1''')
+    cur.execute('''SELECT user_temp, user_humidity FROM user_thermal_meteo WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 1''')
     environmental_indoor_latest = cur.fetchone()
-    cur.execute('''SELECT meteo_temperature_1, meteo_humidity_2, meteo_timestamp FROM weather_data_indoor WHERE meteo_user_id=1 ORDER BY meteo_timestamp LIMIT 60''')
+    cur.execute('''SELECT user_temp, user_humidity, user_timestamp FROM user_thermal_meteo WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 60''')
     environmental_indoor_list = cur.fetchall()
     # Fetch data related to the Thermal Comfort for the Dashboard.
-    cur.execute('''SELECT user_co, user_tvoc, user_timestamp FROM user_well_being_air WHERE user_id=1 ORDER BY user_timestamp LIMIT 1''')
+    cur.execute('''SELECT user_co, user_tvoc, user_iaq user_timestamp FROM user_well_being_air WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 1''')
     air_indoor_latest = cur.fetchone()
-    cur.execute('''SELECT user_co, user_tvoc, user_timestamp FROM user_well_being_air WHERE user_id=1 ORDER BY user_timestamp LIMIT 60''')
+    cur.execute('''SELECT user_co, user_tvoc, user_iaq user_timestamp FROM user_well_being_air WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 60''')
     air_indoor_list = cur.fetchall()
 
-    # _token = "ghmgwr.xLF7Tm50OYe6x_FudBWPW6vR0.CnhEWIll7KPQxF0deT_79OvYMlG_FlC"
-    #
-    # _rootURL = "https://iscan-research.azurewebsites.net/project/TwinergyAthens"
-    #
-    # root = open_api(_rootURL, _token)
-    #
-    # token_use = root.get('tokens')
+    _token = "ghmgwr.xLF7Tm50OYe6x_FudBWPW6vR0.CnhEWIll7KPQxF0deT_79OvYMlG_FlC"
+    _rootURL = "https://iscan-research.azurewebsites.net/project/TwinergyAthens"
 
-    return render_template("dashboard.html", env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
+    # root = open_api(_rootURL, _token)
+    # token_use = root.get('tokens')
+    # building = next(b for b in root.Buildings if b.DisplayName == "ATH-1")
+    # building.refresh()
+
+    # channel_list = building.get('channel-list')
+    # channel = next(c for c in channel_list.Channels if c.DisplayName == "Electricity Tariff")
+
+    # data = channel.get('monthly', scenario="Default", year=2021, month=11)
+    # print(data.Interpolated[0:100])
+
+    tair = environmental_indoor_latest[0]
+    tmrt = 0.935*tair + 1.709
+    rhum = environmental_indoor_latest[1]
+    airv = 0.1
+    met = 1
+    clo = 0.8
+
+    pmv = round(pmv_ppd(tair, tmrt, rhum, 1, 0.8, 0.1), 2)
+
+    pmv_desc = pmvDescription(pmv)
+
+    return render_template("dashboard.html", pmv=pmv, pmv_desc=pmv_desc, env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
+
+
+    # return render_template("dashboard.html", pmv=pmv, energy_tariff=data.Interpolated[0:100], env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
 
 
 @app.route("/energy_production/")

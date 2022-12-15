@@ -4,7 +4,9 @@
 {% block title %}Preferences{% endblock title %}
 
 <!-- Import any extra .css files for the specific page -->
-{% block html_css %}<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/ion-rangeslider.css')}}">{% endblock html_css %}
+{% block html_css %}
+<link href="{{url_for('static', filename='css/ion-rangeslider.css')}}" rel="stylesheet"
+      type="text/css">{% endblock html_css %}
 
 <!-- Set the breadcrumb levels for the specific page -->
 {% set breadcrumb_level_one = 'Preferences' %}
@@ -19,216 +21,185 @@
 
     <div class="container page__container page-section">
         <form action="" method="post">
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Thermal Comfort</div>
+            <div class="row mb-32pt">
+                <div class="col-lg-4">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Thermal Comfort</div>
+                    </div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        Insert the range of your desired <code>THERMAL COMFORT</code> tolerance.
+                    </p>
                 </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of maintaining Thermal Comfort within the appartment and the
-                    <code>DESIRED RANGE</code> of Indoor Temperature.</p>
-            </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
 
-                    <form class="form-horizontal" role="form" action="preferences_update.php" method="post"
-                          id="update-preferences">
+                        <form action="preferences_update.php" class="form-horizontal" id="update-preferences"
+                              method="post"
+                              role="form">
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="preference_thermal_comfort">Thermal
+                                    Scale</label>
+                                <div class="col-sm-9">
+                                    <input id="preference_thermal_comfort" name="preference_thermal_comfort"
+                                           type="text">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="mdk-box bg-primary mdk-box--bg-gradient-primary2 js-mdk-box mb-0" data-domfactory-upgraded="mdk-box"
+         data-effects="blend-background">
+        <div class="mdk-box__bg">
+            <div class="mdk-box__bg-front"
+                 style="transform: translateZ(0px); will-change: opacity; opacity: 1.19186;"></div>
+            <div class="mdk-box__bg-rear"
+                 style="transform: translateZ(0px); will-change: opacity; opacity: -0.19186;"></div>
+        </div>
+        <div class="mdk-box__content">
+            <div class="py-32pt text-center text-sm-left">
+                <div class="container d-flex flex-column justify-content-center align-items-center">
+                    <h1 class="text-white mb-8pt">Flexible Loads</h1>
+                    <p class="lead text-white measure-lead-max mb-0" style="font-size: 16px;">Insert the importance
+                        level and the desired time window for each flexible load.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container page__container page-section">
+        <form action="" method="post">
+
+            <div class="row mb-32pt">
+                <div class="col-lg-4">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Electric Vehicle</div>
+                    </div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        Insert the priority of <code>Electric Vehicle's</code> load in your daily
+                        routine.</p>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
 
                         <div class="form-group row">
-                            <label for="preference_thermal_comfort" class="col-sm-3 col-form-label">Importance
+                            <label class="col-sm-3 col-form-label" for="preference_electric_vehicle">Importance
                                 Scale</label>
                             <div class="col-sm-9">
-                                <input type="text" id="preference_thermal_comfort" name="preference_thermal_comfort">
+                                <input id="preference_electric_vehicle" name="preference_electric_vehicle" type="text">
                             </div>
                         </div>
 
-
-                        <!--                        <div class="form-group form-group-spacer row">-->
-                        <!--                            <label for="preference_thermal_comfort_range" class="col-sm-3 col-form-label">Indoor-->
-                        <!--                                Temperature</label>-->
-                        <!--                            <div class="col-sm-9">-->
-                        <!--                                <input type="text" id="preference_thermal_comfort_range"-->
-                        <!--                                       name="preference_thermal_comfort_range">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Well-Being</div>
+            <div class="form-group form-group-spacer row">
+                <div class="col-sm-12">
+                    <input id="preference_electric_vehicle_range" name="preference_electric_vehicle_range" type="text">
                 </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of maintaining Well-being conditions within the appartment.</p>
             </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
-                    <div class="form-group row">
-                        <label for="preference_well_being" class="col-sm-3 col-form-label">Importance Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_well_being" name="preference_well_being">
+
+            <div class="row mt-32pt mb-32pt">
+                <div class="col-lg-4">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Washing Machine</div>
+                    </div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        Insert the priority of <code>Washing Machine's</code> loads in your daily
+                        routine.</p>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="preference_washing_machine">Importance
+                                Scale</label>
+                            <div class="col-sm-9">
+                                <input id="preference_washing_machine" name="preference_washing_machine" type="text">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Electric Water Heater</div>
+            <div class="form-group form-group-spacer row">
+                <div class="col-sm-12">
+                    <input id="preference_range_washing_machine" name="preference_range_washing_machine" type="text">
                 </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of having access to <code>HEAT WATER</code> and the
-                    <code>DESIRED</code> range of Water's Temperature.</p>
             </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
 
-                    <div class="form-group row">
-                        <label for="preference_water_heater" class="col-sm-3 col-form-label">Importance Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_water_heater" name="preference_water_heater">
+            <div class="row mt-32pt mb-32pt">
+                <div class="col-lg-4">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Dish Washer</div>
+                    </div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        Insert the priority of <code>Dish Washer's</code> load in your daily routine.
+                    </p>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="preference_dish_washer">Importance Scale</label>
+                            <div class="col-sm-9">
+                                <input id="preference_dish_washer" name="preference_dish_washer" type="text">
+                            </div>
                         </div>
                     </div>
-
-                    <!--                    <div class="form-group form-group-spacer row">-->
-                    <!--                        <label for="preference_water_heater_range" class="col-sm-3 col-form-label">Water-->
-                    <!--                            Temperature</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <input type="text" id="preference_water_heater_range" name="preference_water_heater_range">-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Electric Freezer</div>
+            <div class="form-group form-group-spacer row">
+                <div class="col-sm-12">
+                    <input id="preference_range_dish_washer" name="preference_range_dish_washer" type="text">
                 </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of Electric Freezer in your daily routine and the
-                    <code>DESIRED</code> range of Freezer's Temperature.</p>
             </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
 
-                    <div class="form-group row">
-                        <label for="preference_freezer" class="col-sm-3 col-form-label">Importance Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_freezer" name="preference_freezer">
+            <div class="row mt-32pt mb-32pt">
+                <div class="col-lg-4">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Tumble Drier</div>
+                    </div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        Insert the priority of <code>Tumble Drier's</code> load in your daily routine.
+                    </p>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="preference_tumble">Importance Scale</label>
+                            <div class="col-sm-9">
+                                <input id="preference_tumble" name="preference_tumble" type="text">
+                            </div>
                         </div>
                     </div>
-
-                    <!--                    <div class="form-group form-group-spacer row">-->
-                    <!--                        <label for="preference_freezer_range" class="col-sm-3 col-form-label">Freezer-->
-                    <!--                            Temperature</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <input type="text" id="preference_freezer_range" name="preference_freezer_range">-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Energy Flexibility</div>
+            <div class="form-group form-group-spacer row">
+                <div class="col-sm-12">
+                    <input id="preference_range_drier" name="preference_range_drier" type="text">
                 </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of being flexible within the energy market.</p>
             </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
 
-                    <div class="form-group row">
-                        <label for="preference_energy_flexibility" class="col-sm-3 col-form-label">Importance
-                            Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_energy_flexibility" name="preference_energy_flexibility">
+            <div class="row mb-32pt">
+                <div class="col-lg-8 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+
+                        <div class="button-list">
+                            <input class="btn btn-outline-primary" id="submit-preferences" type="submit" value="Submit">
                         </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Eco-Friendliness</div>
-                </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of reducing the ecological footprint results from the energy
-                    consumption.</p>
-            </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
-
-                    <div class="form-group row">
-                        <label for="preference_eco_friendly" class="col-sm-3 col-form-label">Importance Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_eco_friendly" name="preference_eco_friendly">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Financial Costs</div>
-                </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0 border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                    Insert the <code>IMPORTANCE</code> of reducing the energy costs and the <code>maximum</code>
-                    affordable monthly energy spendings.</p>
-            </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
-
-                    <div class="form-group row">
-                        <label for="preference_financial_balance" class="col-sm-3 col-form-label">Importance
-                            Scale</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="preference_financial_balance" name="preference_financial_balance">
-                        </div>
-                    </div>
-
-                    <!--                    <div class="form-group form-group-spacer row">-->
-                    <!--                        <label for="preference_financial_range" class="col-sm-3 col-form-label">Affordable-->
-                    <!--                            Spendings</label>-->
-                    <!--                        <div class="col-sm-9">-->
-                    <!--                            <input type="text" id="preference_financial_range" name="preference_financial_range">-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row mb-32pt">
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex" style="max-width: 100%">
-
-                    <div class="button-list">
-                        <input type="submit" value="Submit" class="btn btn-outline-primary" id="submit-preferences">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </form>
+        </form>
 
     </div>
 </div>
@@ -237,11 +208,53 @@
 $(document).ready(function() {
     $("#preference_thermal_comfort").ionRangeSlider({
       grid: !0,
-      min: 1,
+      min: 0,
       step: 1,
+      max: 7,
+      type: 'double',
+      from: 1,
+      to: 2,
+      values: ["Hot", "Warm", "Slightly Warm", "Neutral", "Slightly Cool", "Cool", "Cold"],
+    }),
+    $("#preference_electric_vehicle_range").ionRangeSlider({
+      grid: !0,
+      min: 0,
+      step: 1,
+      from: 1,
+      to: 2,
+      type: 'double',
       max: 5,
-      from: {{ preferences_importance[0] - 1 }},
-      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
+      values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    }),
+    $("#preference_range_washing_machine").ionRangeSlider({
+      grid: !0,
+      min: 0,
+      step: 1,
+      from: 1,
+      to: 2,
+      type: 'double',
+      max: 5,
+      values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    }),
+        $("#preference_range_dish_washer").ionRangeSlider({
+      grid: !0,
+      min: 0,
+      step: 1,
+      from: 1,
+      to: 2,
+      type: 'double',
+      max: 5,
+      values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+    }),
+            $("#preference_range_drier").ionRangeSlider({
+      grid: !0,
+      min: 0,
+      step: 1,
+      from: 1,
+      to: 2,
+      type: 'double',
+      max: 5,
+      values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
     }),
     $("#preference_well_being").ionRangeSlider({
       grid: !0,
@@ -267,7 +280,7 @@ $(document).ready(function() {
       from: {{ preferences_importance[3] - 1 }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
-    $("#preference_water_heater").ionRangeSlider({
+    $("#preference_dish_washer").ionRangeSlider({
       grid: !0,
       min: 1,
       step: 1,
@@ -275,7 +288,23 @@ $(document).ready(function() {
       from: {{ preferences_importance[4] - 1 }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
-    $("#preference_freezer").ionRangeSlider({
+    $("#preference_washing_machine").ionRangeSlider({
+      grid: !0,
+      min: 1,
+      step: 1,
+      max: 5,
+      from: {{ preferences_importance[4] - 1 }},
+      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
+    }),
+    $("#preference_tumble").ionRangeSlider({
+      grid: !0,
+      min: 1,
+      step: 1,
+      max: 5,
+      from: {{ preferences_importance[4] - 1 }},
+      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
+    }),
+    $("#preference_electric_vehicle").ionRangeSlider({
       grid: !0,
       min: 1,
       step: 1,
@@ -292,6 +321,7 @@ $(document).ready(function() {
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     })
   });
+
 
 </script>
 

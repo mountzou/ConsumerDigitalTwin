@@ -134,8 +134,13 @@ label {
 }
 
 .text-banner {
-  font-family: Josefin Sans, Helvetica Neue, Arial, sans-serif;
-  font-size: 14px;
+  font-family: Josefin Sans, sans-serif;
+  font-size: 14px !important;
+}
+
+.btn-banner {
+  font-size: 12px !important;
+  font-weight: bold !important;
 }
 
 .carousel-description {
@@ -149,4 +154,9 @@ label {
 [dir=ltr] .img-fluid {
   width: 100% !important;
   max-width: none
+}
+
+#card-energy-consumption {
+    font-family: 'Josefin Sans';
+    font-size: 15px;
 }

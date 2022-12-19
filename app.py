@@ -13,7 +13,8 @@ import time
 # Import scan_api library to connect with iSCAN DB
 from scan_api import open_api
 
-from thermal_comfort import pmv_ppd
+# Import thermal_comfort library to assess the occupant's thermal comfort
+from thermal_comfort import pmv_ppd, pmvDescription
 
 app = Flask(__name__)
 
@@ -25,59 +26,29 @@ app.config['MYSQL_DB'] = 'consume5_twinERGY'
 
 mysql = MySQL(app)
 
-def pmvDescription(pmv):
-    if (-0.5 <= pmv <= 0.5):
-        return 'Neutral'
-    elif (-1.5 <= pmv < -0.5):
-        return 'Slightly Cool'
-    elif (0.5 <= pmv < 1.5):
-        return 'Slightly Warm'
-    elif (-2.5 <= pmv < -1.5):
-        return 'Cool'
-    elif (1.5 <= pmv < 2.5):
-        return 'Warm'
-    elif (pmv > 2.5):
-        return 'Hot'
-    elif (pmv < -2.5):
-        return 'Cold'
-    else:
-        return 'In progress..'
-
 def prefences_importance_method():
     cur = mysql.connection.cursor()
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '1') ORDER BY preference_timestamp DESC''')
+    cur.execute('''SELECT * FROM user_pref_thermal WHERE user_id='2' ORDER BY user_pref_time DESC''')
     preference_thermal_comfort = cur.fetchone()
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '2') ORDER BY preference_timestamp DESC''')
-    preference_well_being = cur.fetchone()
+    cur.execute('''SELECT * FROM user_flex_loads WHERE user_id='2' ORDER BY user_pref_time DESC''')
+    preference_flex_loads = cur.fetchone()
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '3') ORDER BY preference_timestamp DESC''')
-    preference_energy_flexibility = cur.fetchone()
+    print(preference_flex_loads)
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '4') ORDER BY preference_timestamp DESC''')
-    preference_eco_friendliness = cur.fetchone()
+    # preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0],
+    #                           preference_eco_friendliness[0], preference_financial_balalnce[0],
+    #                           preference_water_heater[0], preference_freezer[0]]
 
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '5') ORDER BY preference_timestamp DESC''')
-    preference_financial_balalnce = cur.fetchone()
-
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '6') ORDER BY preference_timestamp DESC''')
-    preference_water_heater = cur.fetchone()
-
-    cur.execute('''SELECT preference_value FROM mcda_preferences WHERE(user_id='2' and preference_code = '7') ORDER BY preference_timestamp DESC''')
-    preference_freezer = cur.fetchone()
-
-    preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0],
-                              preference_eco_friendliness[0], preference_financial_balalnce[0],
-                              preference_water_heater[0], preference_freezer[0]]
-
-    return preferences_importance
+    return [preference_thermal_comfort[1]+3, preference_thermal_comfort[2]+3, preference_flex_loads[1], preference_flex_loads[4], preference_flex_loads[7], preference_flex_loads[10], preference_flex_loads[2], preference_flex_loads[3], preference_flex_loads[5], preference_flex_loads[6], preference_flex_loads[8], preference_flex_loads[9], preference_flex_loads[11], preference_flex_loads[12]]
 
 
 @app.route("/")
 @app.route("/index/")
 @app.route("/dashboard/")
 def rout():
+
     cur = mysql.connection.cursor()
     # Fetch data related to the Thermal Comfort for the Dashboard.
     cur.execute('''SELECT user_temp, user_humidity FROM user_thermal_meteo WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 1''')
@@ -162,55 +133,56 @@ def preferences():
         presentDate = datetime.datetime.now()
         unix_timestamp = (int(datetime.datetime.timestamp(presentDate)))
 
-        importnace_thermal_comfort = request.form.get("preference_thermal_comfort")
-        importnace_well_being = request.form.get("preference_well_being")
-        importnace_water_heater = request.form.get("preference_water_heater")
-        importnace_freezer = request.form.get("preference_freezer")
-        importnace_flexibility = request.form.get("preference_energy_flexibility")
-        importnace_eco_friendliness = request.form.get("preference_eco_friendly")
-        importance_financial = request.form.get("preference_financial_balance")
+        importnace_thermal_comfort = request.form.get("preference_thermal_comfort").split(';')
+
+        importnace_electric_vehicle = request.form.get("preference_electric_vehicle")
+
+        thermal_dict = {-3: "Cold", -2: "Cool", -1: "Slightly Cool", 0: "Neutral",
+                           1: "Slightly Warm", 2: "Warm", 3: "Hot"}
 
         importance_dict = {1: "Not Important", 2: "Slightly Important", 3: "Important", 4: "Fairly Important",
                            5: "Very Important"}
 
-        preference_thermal_comfort = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_thermal_comfort)])
-        preference_well_being = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_well_being)])
-        preference_water_heater = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_water_heater)])
-        preference_freezer = (list(importance_dict.keys())[list(importance_dict.values()).index(importnace_freezer)])
-        preference_flexibility = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_flexibility)])
-        preference_eco_friendliness = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importnace_eco_friendliness)])
-        preference_financial = (
-            list(importance_dict.keys())[list(importance_dict.values()).index(importance_financial)])
+        thermal_tolerance_list = []
 
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Thermal Comfort', 1, "%s" , %s) ''', (
-            preference_thermal_comfort, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Well-Being', 2, "%s" , %s) ''', (
-            preference_well_being, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Energy Flexibility', 3, "%s" , %s) ''', (
-            preference_flexibility, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Eco-Friendliness', 4, "%s" , %s) ''', (
-            preference_eco_friendliness, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Financial Balance', 5, "%s" , %s) ''', (
-            preference_financial, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Water Heater', 6, "%s" , %s) ''', (
-            preference_water_heater, unix_timestamp))
-        cur.execute('''INSERT INTO mcda_preferences VALUES (2, 'Electric Freezer', 7, "%s" , %s) ''', (
-            preference_freezer, unix_timestamp))
+        for thermal_tolerance in importnace_thermal_comfort:
+            preference_thermal_comfort = (
+                list(thermal_dict.keys())[list(thermal_dict.values()).index(thermal_tolerance)])
+            thermal_tolerance_list.append(preference_thermal_comfort)
+
+        importnace_ev_range = request.form.get("preference_electric_vehicle_range").split(';')
+        importnace_dw_range = request.form.get("preference_range_dish_washer").split(';')
+        importnace_wm_range = request.form.get("preference_range_washing_machine").split(';')
+        importnace_ht_range = request.form.get("preference_range_drier").split(';')
+
+        ev_start, ev_end = int(importnace_ev_range[0].split(":")[0]), int(importnace_ev_range[1].split(":")[0])
+        dw_start, dw_end = int(importnace_dw_range[0].split(":")[0]), int(importnace_dw_range[1].split(":")[0])
+        wm_start, wm_end = int(importnace_wm_range[0].split(":")[0]), int(importnace_wm_range[1].split(":")[0])
+        ht_start, ht_end = int(importnace_ht_range[0].split(":")[0]), int(importnace_ht_range[1].split(":")[0])
+
+        importance_ev = list(importance_dict.keys())[list(importance_dict.values()).index(request.form.get("preference_electric_vehicle"))] - 1
+        importance_dw = list(importance_dict.keys())[list(importance_dict.values()).index(request.form.get("preference_dish_washer"))] - 1
+        importance_wm = list(importance_dict.keys())[list(importance_dict.values()).index(request.form.get("preference_washing_machine"))] - 1
+        importance_ht = list(importance_dict.keys())[list(importance_dict.values()).index(request.form.get("preference_tumble"))] - 1
+
+        cur.execute('''INSERT INTO user_pref_thermal VALUES (2, "%s", "%s" , %s, '') ''', (
+            thermal_tolerance_list[0], thermal_tolerance_list[1], unix_timestamp))
+
+        cur.execute('''INSERT INTO user_flex_loads VALUES (2, "%s", "%s" , "%s", "%s", "%s", "%s", "%s", "%s" , "%s", "%s", "%s", "%s", "%s" ) ''', (
+            importance_ev, ev_start, ev_end, importance_ht, ht_start, ht_end, importance_wm, wm_start, wm_end,
+            importance_dw, dw_start, dw_end, unix_timestamp
+        ))
 
         mysql.connection.commit()
 
-        prefences_importance = prefences_importance_method()
+        #
+        # prefences_importance = prefences_importance_method()
+        #
+        # return render_template("preferences.html", preferences_importance=prefences_importance)
 
-        return render_template("preferences.html", preferences_importance=prefences_importance)
+    preferences_importance = prefences_importance_method()
 
-    prefences_importance = prefences_importance_method()
-
-    return render_template("preferences.html", preferences_importance=prefences_importance)
+    return render_template("preferences.html", preferences_importance=preferences_importance)
 
 
 @app.route("/energy_consumption/")

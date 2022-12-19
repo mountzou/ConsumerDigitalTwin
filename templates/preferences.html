@@ -33,10 +33,6 @@
                 <div class="col-lg-8 d-flex align-items-center">
                     <div class="flex" style="max-width: 100%">
 
-                        <form action="preferences_update.php" class="form-horizontal" id="update-preferences"
-                              method="post"
-                              role="form">
-
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="preference_thermal_comfort">Thermal
                                     Scale</label>
@@ -48,7 +44,6 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 
     <div class="mdk-box bg-primary mdk-box--bg-gradient-primary2 js-mdk-box mb-0" data-domfactory-upgraded="mdk-box"
@@ -60,11 +55,10 @@
                  style="transform: translateZ(0px); will-change: opacity; opacity: -0.19186;"></div>
         </div>
         <div class="mdk-box__content">
-            <div class="py-32pt text-center text-sm-left">
+            <div class="py-32pt text-center text-sm-center">
                 <div class="container d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-white mb-8pt">Flexible Loads</h1>
-                    <p class="lead text-white measure-lead-max mb-0" style="font-size: 16px;">Insert the importance
-                        level and the desired time window for each flexible load.</p>
+                    <p class="lead text-white measure-lead-max mb-0" style="font-size: 16px;">Insert the priority and the desired time window for each household appliance.</p>
                 </div>
             </div>
         </div>
@@ -187,12 +181,12 @@
                 </div>
             </div>
 
-            <div class="row mb-32pt">
+            <div class="row mt-32pt mb-32pt">
                 <div class="col-lg-8 d-flex align-items-center">
                     <div class="flex" style="max-width: 100%">
 
                         <div class="button-list">
-                            <input class="btn btn-outline-primary" id="submit-preferences" type="submit" value="Submit">
+                            <input class="btn btn-outline-primary" id="submit-preferences" type="submit" value="UPDATE PREFERENCES">
                         </div>
 
                     </div>
@@ -212,80 +206,56 @@ $(document).ready(function() {
       step: 1,
       max: 7,
       type: 'double',
-      from: 1,
-      to: 2,
-      values: ["Hot", "Warm", "Slightly Warm", "Neutral", "Slightly Cool", "Cool", "Cold"],
+      from: {{ preferences_importance[0] }},
+      to: {{ preferences_importance[1] }},
+      values: ["Cold", "Cool", "Slightly Cool", "Neutral", "Slightly Warm", "Warm", "Hot"],
     }),
     $("#preference_electric_vehicle_range").ionRangeSlider({
       grid: !0,
       min: 0,
       step: 1,
-      from: 1,
-      to: 2,
+      from: {{ preferences_importance[6] }},
+      to: {{ preferences_importance[7] }},
       type: 'double',
-      max: 5,
+      max: 28,
       values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
     }),
     $("#preference_range_washing_machine").ionRangeSlider({
       grid: !0,
       min: 0,
       step: 1,
-      from: 1,
-      to: 2,
+      from: {{ preferences_importance[10] }},
+      to: {{ preferences_importance[11] }},
       type: 'double',
       max: 5,
       values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
     }),
-        $("#preference_range_dish_washer").ionRangeSlider({
+    $("#preference_range_dish_washer").ionRangeSlider({
       grid: !0,
       min: 0,
       step: 1,
-      from: 1,
-      to: 2,
+      from: {{ preferences_importance[12] }},
+      to: {{ preferences_importance[13] }},
       type: 'double',
       max: 5,
       values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
     }),
-            $("#preference_range_drier").ionRangeSlider({
+    $("#preference_range_drier").ionRangeSlider({
       grid: !0,
       min: 0,
       step: 1,
-      from: 1,
-      to: 2,
+      from: {{ preferences_importance[8] }},
+      to: {{ preferences_importance[9] }},
       type: 'double',
       max: 5,
       values: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
-    }),
-    $("#preference_well_being").ionRangeSlider({
-      grid: !0,
-      min: 1,
-      step: 1,
-      max: 5,
-      from: {{ preferences_importance[1] - 1 }},
-      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
-    }),
-    $("#preference_energy_flexibility").ionRangeSlider({
-      grid: !0,
-      min: 1,
-      step: 1,
-      max: 5,
-      from: {{ preferences_importance[2] - 1 }},
-      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
-    }),
-    $("#preference_eco_friendly").ionRangeSlider({
-      grid: !0,
-      min: 1,
-      step: 1,
-      max: 5,
-      from: {{ preferences_importance[3] - 1 }},
-      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
     $("#preference_dish_washer").ionRangeSlider({
       grid: !0,
       min: 1,
       step: 1,
       max: 5,
-      from: {{ preferences_importance[4] - 1 }},
+      from: {{ preferences_importance[5] }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
     $("#preference_washing_machine").ionRangeSlider({
@@ -293,7 +263,7 @@ $(document).ready(function() {
       min: 1,
       step: 1,
       max: 5,
-      from: {{ preferences_importance[4] - 1 }},
+      from: {{ preferences_importance[4] }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
     $("#preference_tumble").ionRangeSlider({
@@ -301,7 +271,7 @@ $(document).ready(function() {
       min: 1,
       step: 1,
       max: 5,
-      from: {{ preferences_importance[4] - 1 }},
+      from: {{ preferences_importance[3] }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     }),
     $("#preference_electric_vehicle").ionRangeSlider({
@@ -309,15 +279,7 @@ $(document).ready(function() {
       min: 1,
       step: 1,
       max: 5,
-      from: {{ preferences_importance[5] - 1 }},
-      values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
-    }),
-    $("#preference_financial_balance").ionRangeSlider({
-      grid: !0,
-      min: 1,
-      step: 1,
-      max: 5,
-      from: {{ preferences_importance[6] - 1 }},
+      from: {{ preferences_importance[2] }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
     })
   });

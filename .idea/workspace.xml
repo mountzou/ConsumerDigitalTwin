@@ -2,39 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33738f26-5ea8-4b41-96c3-f287fb77403a" name="Changes" comment="Helpdesk - CDT">
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/cli.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/optimized_functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/psychrometrics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/shared_functions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pythermalcomfort/utilities.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/dashboard-energy-consumption.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/dashboard-energy-production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard-energy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard-renewable.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thermal_comfort.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/twinergy.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/twinergy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dashboard-comfort.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/dashboard-comfort.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dashboard-well-being.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/dashboard-well-being.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-consumption.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-helpdesk.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-helpdesk.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-preferences.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-preferences.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base-production.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-production.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard-alert.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard-alert.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard-thermal-comfort.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard-thermal-comfort.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard-well-being.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard-well-being.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/energy-consumption-asset.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption-asset.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/energy-consumption-chart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption-chart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/energy-consumption.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/energy-consumption.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/preferences.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/preferences.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thermal_comfort.py" beforeDir="false" afterPath="$PROJECT_DIR$/thermal_comfort.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660035100934</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Helpdesk - CDT">
+      <created>1671108699526</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671108699526</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

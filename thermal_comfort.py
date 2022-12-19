@@ -1,6 +1,26 @@
 import math
 
 
+# Custom function to convert PMV into literal corresponding value
+def pmvDescription(pmv):
+    if -0.5 <= pmv <= 0.5:
+        return 'Neutral'
+    elif -1.5 <= pmv < -0.5:
+        return 'Slightly Cool'
+    elif 0.5 <= pmv < 1.5:
+        return 'Slightly Warm'
+    elif -2.5 <= pmv < -1.5:
+        return 'Cool'
+    elif 1.5 <= pmv < 2.5:
+        return 'Warm'
+    elif pmv > 2.5:
+        return 'Hot'
+    elif pmv < -2.5:
+        return 'Cold'
+    else:
+        return 'In progress..'
+
+
 def pmv_ppd(tr, tdb, rh, met, clo, vr, wme=0):
     pa = rh * 10 * math.exp(16.6536 - 4030.183 / (tdb + 235))
 

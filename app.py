@@ -14,7 +14,7 @@ import time
 from scan_api import open_api
 
 # Import thermal_comfort library to assess the occupant's thermal comfort
-from thermal_comfort import pmv_ppd, pmvDescription
+from thermal_comfort import pmv_ppd, pmvDescription, tc_metabolic_rate
 
 app = Flask(__name__)
 
@@ -35,12 +35,6 @@ def prefences_importance_method():
     cur.execute('''SELECT * FROM user_flex_loads WHERE user_id='2' ORDER BY user_pref_time DESC''')
     preference_flex_loads = cur.fetchone()
 
-    print(preference_flex_loads)
-
-    # preferences_importance = [preference_thermal_comfort[0], preference_well_being[0], preference_energy_flexibility[0],
-    #                           preference_eco_friendliness[0], preference_financial_balalnce[0],
-    #                           preference_water_heater[0], preference_freezer[0]]
-
     return [preference_thermal_comfort[1]+3, preference_thermal_comfort[2]+3, preference_flex_loads[1], preference_flex_loads[4], preference_flex_loads[7], preference_flex_loads[10], preference_flex_loads[2], preference_flex_loads[3], preference_flex_loads[5], preference_flex_loads[6], preference_flex_loads[8], preference_flex_loads[9], preference_flex_loads[11], preference_flex_loads[12]]
 
 
@@ -51,46 +45,46 @@ def rout():
 
     cur = mysql.connection.cursor()
     # Fetch data related to the Thermal Comfort for the Dashboard.
-    cur.execute('''SELECT user_temp, user_humidity FROM user_thermal_meteo WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 1''')
-    environmental_indoor_latest = cur.fetchone()
-    cur.execute('''SELECT user_temp, user_humidity, user_timestamp FROM user_thermal_meteo WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 60''')
+    cur.execute('''SELECT AVG(tc_temperature), AVG(tc_humidity), SUM(tc_metabolic)  FROM user_thermal_comfort WHERE wearable_id='0080E1150510B276' AND gateway_id='gr-ac1f09fffe0609a8' ''')
+    thermal_comfort = cur.fetchall()
+
+    cur.execute('''SELECT tc_temperature, tc_humidity FROM user_thermal_comfort WHERE wearable_id='0080E1150510B276' AND gateway_id='gr-ac1f09fffe0609a8' ORDER BY tc_timestamp DESC LIMIT 60 ''')
     environmental_indoor_list = cur.fetchall()
-    # Fetch data related to the Thermal Comfort for the Dashboard.
-    cur.execute('''SELECT user_co, user_tvoc, user_iaq user_timestamp FROM user_well_being_air WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 1''')
-    air_indoor_latest = cur.fetchone()
-    cur.execute('''SELECT user_co, user_tvoc, user_iaq user_timestamp FROM user_well_being_air WHERE user_id=2 ORDER BY user_timestamp DESC LIMIT 60''')
-    air_indoor_list = cur.fetchall()
+
+    cur.execute('''SELECT AVG(tc_temperature), AVG(tc_humidity) FROM user_thermal_comfort WHERE wearable_id='0080E1150510B276' AND gateway_id='gr-ac1f09fffe0609a8' ORDER BY tc_timestamp DESC LIMIT 60 ''')
+    thermal_comfort = cur.fetchall()
+
+    cur.execute('''SELECT tc_metabolic FROM user_thermal_comfort WHERE wearable_id='0080E1150510B276' AND gateway_id='gr-ac1f09fffe0609a8' ORDER BY tc_timestamp DESC LIMIT 60 ''')
+    metabolic_rate = cur.fetchall()
+
+    met = tc_metabolic_rate(metabolic_rate)
+
+    print(met)
 
     _token = "ghmgwr.xLF7Tm50OYe6x_FudBWPW6vR0.CnhEWIll7KPQxF0deT_79OvYMlG_FlC"
     _rootURL = "https://iscan-research.azurewebsites.net/project/TwinergyAthens"
 
-    # root = open_api(_rootURL, _token)
-    # token_use = root.get('tokens')
-    # building = next(b for b in root.Buildings if b.DisplayName == "ATH-1")
-    # building.refresh()
+    root = open_api(_rootURL, _token)
+    token_use = root.get('tokens')
+    building = next(b for b in root.Buildings if b.DisplayName == "ATH-1")
+    building.refresh()
 
-    # channel_list = building.get('channel-list')
-    # channel = next(c for c in channel_list.Channels if c.DisplayName == "Electricity Tariff")
+    channel_list = building.get('channel-list')
+    channel = next(c for c in channel_list.Channels if c.DisplayName == "Electricity Tariff")
 
-    # data = channel.get('monthly', scenario="Default", year=2021, month=11)
-    # print(data.Interpolated[0:100])
+    data = channel.get('monthly', scenario="Default", year=2021, month=11)
 
-    tair = environmental_indoor_latest[0]
+    tair = thermal_comfort[0][0]
     tmrt = 0.935*tair + 1.709
-    rhum = environmental_indoor_latest[1]
+    rhum = thermal_comfort[0][1]
     airv = 0.1
-    met = 1
     clo = 0.8
 
-    pmv = round(pmv_ppd(tair, tmrt, rhum, 1, 0.8, 0.1), 2)
+    pmv = round(pmv_ppd(tair, tmrt, rhum, met, 0.8, 0.1), 3)
 
     pmv_desc = pmvDescription(pmv)
 
-    return render_template("dashboard.html", pmv=pmv, pmv_desc=pmv_desc, env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
-
-
-    # return render_template("dashboard.html", pmv=pmv, energy_tariff=data.Interpolated[0:100], env_indoor=environmental_indoor_latest, env_indoor_list=json.dumps(environmental_indoor_list), air_indoor=air_indoor_latest, air_indoor_list=json.dumps(air_indoor_list))
-
+    return render_template("dashboard.html", pmv=pmv, pmv_desc=pmv_desc, energy_tariff=data.Interpolated[0:100], env_indoor=[thermal_comfort[0][0], thermal_comfort[0][1]], met=met, env_indoor_list=json.dumps(environmental_indoor_list))
 
 @app.route("/energy_production/")
 def energy_production():
@@ -174,11 +168,6 @@ def preferences():
         ))
 
         mysql.connection.commit()
-
-        #
-        # prefences_importance = prefences_importance_method()
-        #
-        # return render_template("preferences.html", preferences_importance=prefences_importance)
 
     preferences_importance = prefences_importance_method()
 

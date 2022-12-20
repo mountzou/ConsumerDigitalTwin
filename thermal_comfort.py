@@ -1,6 +1,33 @@
 import math
 
 
+def tc_metabolic_rate(metabolic_rate):
+    metabolic_sum = 0
+    metabolic_count = 0
+
+    met_prev = metabolic_rate[0][0]
+
+    for met in metabolic_rate:
+        if (met[0] - met_prev) > 0:
+            metabolic_count += 1
+            metabolic_sum += (met[0] - met_prev) * (10 / 2)
+        elif (met[0] - met_prev) > 0:
+            metabolic_sum += 0
+            metabolic_count += 0
+        else:
+            metabolic_count = 0
+            metabolic_sum = 0
+        met_prev = met[0]
+
+    met = 1.2
+
+    if metabolic_count > 0 and metabolic_sum > 0.5:
+        met = round(metabolic_sum / metabolic_count, 2)
+    else:
+        met = 1.2
+
+    return met
+
 # Custom function to convert PMV into literal corresponding value
 def pmvDescription(pmv):
     if -0.5 <= pmv <= 0.5:

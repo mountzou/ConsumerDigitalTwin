@@ -21,7 +21,26 @@
     <div class="container page__container">
         <div class="page-section">
             {% include 'energy-consumption-asset.html' %}
-            {% include 'energy-consumption-chart.html' %}
+            <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor" class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="air-condition" style="display: block; height: 594px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
+                        <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor" class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="air-condition-daily" style="display: block; height: 394px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

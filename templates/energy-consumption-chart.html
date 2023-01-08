@@ -1,12 +1,12 @@
-<div class="row mb-32pt">
-    <div class="col-lg-12 d-flex align-items-center">
-        <div class="flex" style="max-width: 100%">
-            <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor" id="air-condition"
-                    data-chart-line-border-color="primary" data-chart-points="true" style="display: block; height: 594px; width: 1189px;"
-                    class="chartjs-render-monitor" width="2378" height="1188"></canvas>
-        </div>
-    </div>
-</div>
+<!--<div class="row mb-32pt">-->
+<!--    <div class="col-lg-12 d-flex align-items-center">-->
+<!--        <div class="flex" style="max-width: 100%">-->
+<!--            <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor" id="air-condition"-->
+<!--                    data-chart-line-border-color="primary" data-chart-points="true" style="display: block; height: 594px; width: 1189px;"-->
+<!--                    class="chartjs-render-monitor" width="2378" height="1188"></canvas>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script>
 new Chart(document.getElementById("air-condition"), {
@@ -15,7 +15,7 @@ new Chart(document.getElementById("air-condition"), {
       labels: {{ air_condition_time | safe }},
       datasets: [
         {
-          label: "HVAC | Hourly Energy Consumption",
+          label: "Hourly HVAC Energy Demand",
             borderColor: "rgb(255, 186, 77)",
             backgroundColor: "rgb(255, 186, 77, .1)",
             borderWidth: 2,
@@ -27,7 +27,16 @@ new Chart(document.getElementById("air-condition"), {
     options: {
             elements: {
                 point: {
-                    radius: 1.4
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return tooltipItems.yLabel + ' kWh';
+                    }
                 }
             },
             scales: {
@@ -46,7 +55,7 @@ new Chart(document.getElementById("air-condition"), {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: "HVAC | Hourly Energy Consumption (kWh)",
+                        labelString: "Energy Demand of HVAC",
                         fontStyle: "bold",
                         fontSize: 14
                     }
@@ -60,7 +69,7 @@ new Chart(document.getElementById("air-condition"), {
                         fontSize: 13,
                         padding: 20,
                         autoSkip: true,
-                        maxTicksLimit: 4,
+                        maxTicksLimit: 5,
                         maxRotation: 0,
                     },
                     scaleLabel: {
@@ -72,11 +81,115 @@ new Chart(document.getElementById("air-condition"), {
                 }],
             },
             legend: {
+                display: true,
                 onClick: (e) => e.stopPropagation(),
                 labels: {
                     fontSize: 14,
                     usePointStyle: true,
-                    boxWidth: 6
+                    boxWidth: 1
+                }
+            }
+        }
+});
+
+Chart.defaults.global.defaultFontFamily = 'Josefin Sans';
+
+Chart.Legend.prototype.afterFit = function() {
+    this.height = this.height + 20;
+};
+
+</script>
+
+<script>
+
+var mean_hvac_demand = Array(31).fill({{ mean_air_condition_consumption }});
+
+new Chart(document.getElementById("air-condition-daily"), {
+    type: 'line',
+    data: {
+      labels: {{ air_condition_time_daily | safe }},
+      datasets: [
+        {
+            label: "Daily HVAC Energy Demand",
+            borderColor: "rgb(255, 186, 77)",
+            backgroundColor: "rgb(255, 186, 77, .1)",
+            borderWidth: 2,
+            fill: true,
+            data: {{ air_condition_consumption_daily }}
+        },
+        {
+            label: "Mean Monthly Energy Demand",
+            borderColor: "#7fdd62",
+            backgroundColor: "#7fdd62",
+            borderWidth: 2,
+            fill: false,
+            data: mean_hvac_demand
+        }
+      ]
+    },
+    options: {
+            elements: {
+                point: {
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return tooltipItems.yLabel + ' kWh';
+                    }
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: false,
+                        maxTicksLimit: 4,
+                        callback: function(value, index, values) {
+                            return value + ' kWh';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Energy Demand of HVAC",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 5,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                display: true,
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 1,
                 }
             }
         }

@@ -1,0 +1,81 @@
+{% extends "base-thermal-comfort.html" %}
+
+<!-- Add the title for the specific page -->
+{% block title %}Thermal Comfort{% endblock title %}
+
+<!-- Import any extra .css files for the specific page -->
+{% block html_css %}{% endblock html_css %}
+
+<!-- Import any extra .js files for the specific page -->
+{% block js_scripts %}{% endblock js_scripts %}
+
+<!-- Set the breadcrumb levels for the specific page -->
+{% set breadcrumb_level_one = 'Thermal Comfort & Well-being' %}
+{% set breadcrumb_level_two = 'Thermal Comfort' %}
+
+{% block content %}
+<div class="pt-32pt">
+    <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        {% include 'breadcrumb.html' %}
+    </div>
+    <div class="container page__container">
+        <div class="page-section">
+            <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor"
+                                class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="thermal-comfort-indoor"
+                                style="display: block; height: 494px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-section">
+            <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor"
+                                class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="thermal-comfort-indoor-temperature"
+                                style="display: block; height: 494px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-section">
+            <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor"
+                                class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="thermal-comfort-indoor-humidity"
+                                style="display: block; height: 594px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-section">
+            <div class="row mb-32pt">
+                <div class="col-lg-12 d-flex align-items-center">
+                    <div class="flex" style="max-width: 100%">
+                        <canvas class="chart-canvas js-update-chart-line chartjs-render-monitor"
+                                class="chartjs-render-monitor"
+                                data-chart-line-border-color="primary" data-chart-points="true"
+                                height="1188"
+                                id="thermal-comfort-indoor-metabolic"
+                                style="display: block; height: 494px; width: 1189px;" width="2378"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

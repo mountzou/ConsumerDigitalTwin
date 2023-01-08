@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
     var monthlyMonthlyEnergyProductionData = {
-        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
         datasets: [{
             label: "Energy Production",
             type: "bar",
             borderColor: "#7fdd62",
             backgroundColor: "#7fdd62",
-            data: [10, 10, 20, 30, 50, 30, 10, 40, 30, 20, 10, 40]
+            data: [1, 1, 1, 1, 1, 1, 3, 5, 5, 6, 12, 20, 25, 30, 30, 20, 18, 10, 5, 1, 1, 1, 1, 1]
         }]
     };
 

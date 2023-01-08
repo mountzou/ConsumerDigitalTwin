@@ -160,3 +160,8 @@ label {
     font-family: 'Josefin Sans';
     font-size: 15px;
 }
+
+.demand-dashboard {
+    font-size: .9125rem;
+    font-weight: 700 !important;
+}

@@ -1,6 +1,28 @@
 <div class="col-lg-4">
+<!--    <div class="page-separator">-->
+<!--        <div class="page-separator__text">Mean Monthly Tariff</div>-->
+<!--    </div>-->
+
+<!--    <div class="card">-->
+<!--        <div class="card-header p-0 nav border-0">-->
+<!--            <div class="row no-gutters flex" role="tablist">-->
+<!--                <div class="col-auto">-->
+<!--                    <div class="p-card-header d-flex align-items-center">-->
+<!--                        <div class="h2 mb-0 mr-3"><i-->
+<!--                                class="material-icons text-primary mr-4pt">euro_symbol</i></div>-->
+<!--                        <div class="flex">-->
+<!--                            <h2 class="h2 mb-0 ml11">-->
+<!--                                {{ energy_tariff[0] }} € / kWh-->
+<!--                            </h2>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="page-separator">
-        <div class="page-separator__text">Daily Electricity Tariff</div>
+        <div class="page-separator__text">Monthly Energy Costs</div>
     </div>
 
     <div class="card">
@@ -12,17 +34,20 @@
                                 class="material-icons text-primary mr-4pt">euro_symbol</i></div>
                         <div class="flex">
                             <h2 class="h2 mb-0 ml11">
-                                -
+                                220.54 €
                             </h2>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
+
     </div>
 
-    <div class="page-separator">
-        <div class="page-separator__text">Daily Energy Cost</div>
+        <div class="page-separator">
+        <div class="page-separator__text">Profit from LEM Participation</div>
     </div>
 
     <div class="card">
@@ -34,7 +59,7 @@
                                 class="material-icons text-primary mr-4pt">euro_symbol</i></div>
                         <div class="flex">
                             <h2 class="h2 mb-0 ml11">
-                                -
+                                1.22 € / day
                             </h2>
                         </div>
                     </div>
@@ -47,58 +72,61 @@
     </div>
 
 </div>
-<div class="col-lg-4">
-    <div class="page-separator">
-        <div class="page-separator__text">Daily Energy Demand</div>
-    </div>
-    <div class="card card-group-row__card">
-        <div class="card-body d-flex flex-row align-items-center flex-0">
-            <div class="h2 mb-0 mr-3">22.14 kWh</div>
-            <div class="flex">
-                <div class="card-title">latest 24 hours</div>
-                <div class="card-subtitle text-50 d-flex align-items-center"><i
-                        class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_down</i>1.61% day-to-day</div>
-            </div>
+<!--<div class="col-lg-4">-->
+<!--    <div class="page-separator">-->
+<!--        <div class="page-separator__text">Monthly Energy Demand</div>-->
+<!--    </div>-->
+<!--    <div class="card card-group-row__card">-->
+<!--        <div class="card-body d-flex flex-row align-items-center flex-0">-->
+<!--            <div class="h2 mb-0 mr-3">22.14 kWh</div>-->
+<!--            <div class="flex">-->
+<!--                <div class="card-title">latest 24 hours</div>-->
+<!--                <div class="card-subtitle text-50 d-flex align-items-center"><i-->
+<!--                        class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_down</i>1.61% day-to-day-->
+<!--                </div>-->
+<!--            </div>-->
 
-        </div>
-        <div class="card-body d-flex flex-column justify-content-center">
-            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">
-                                        <span class="flex d-flex flex-column">
-                                            <span class="text-body text-black-100">Electric Vehicle</span>
-                                            Garden
-                                        </span>
-                <span class="mx-3">60 kWh / 100 kWh</span>
-                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 4.0%</span>
-            </small>
-            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">
-                                        <span class="flex d-flex flex-column">
-                                            <span class="text-body">HVAC System</span>
-                                            Bedroom
-                                        </span>
-                <span class="mx-3">30 kWh / 100 kWh</span>
-                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 2.0%</span>
-            </small>
-            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">
-                                        <span class="flex d-flex flex-column">
-                                            <span class="text-body" id="">Heat Pump</span>
-                                            Living Room
-                                        </span>
-                <span class="mx-3">10 kWh / 100 kWh</span>
-                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 1.4%</span>
-            </small>
-            <small class="d-flex align-items-start font-weight-bold text-muted">
-                                        <span class="flex d-flex flex-column">
-                                            <span class="text-body" id="">Washing Machine</span>
-                                            Living Room
-                                        </span>
-                <span class="mx-3">10 kWh / 100 kWh</span>
-                <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 1.4%</span>
-            </small>
-        </div>
-    </div>
-</div>
+<!--        </div>-->
+<!--        <div class="card-body d-flex flex-column justify-content-center">-->
+<!--            <small class="d-flex align-items-start font-weight-bold text-muted mb-2 demand-dashboard">-->
+<!--                                        <span class="flex d-flex flex-column mb-1">-->
+<!--                                            <span class="text-body text-black-200 demand-dashboard" id="demand-oven">Oven</span>-->
+<!--                                        </span>-->
+<!--                <span class="mx-3 demand-dashboard">{{ energy_demand[0] }} kWh</span>-->
+<!--                <span class="d-flex align-items-center demand-dashboard"> €</span>-->
+<!--            </small>-->
+<!--            <small class="d-flex align-items-start font-weight-bold text-muted mb-2">-->
+<!--                                        <span class="flex d-flex flex-column mb-1">-->
+<!--                                            <span class="text-body demand-dashboard" id="demand-hifi">HiFi</span>-->
+<!--                                        </span>-->
+<!--                <span class="mx-3 demand-dashboard">{{ energy_demand[1] }} kWh</span>-->
+<!--                <span class="d-flex align-items-center demand-dashboard"> €</span>-->
+<!--            </small>-->
+<!--            <small class="d-flex align-items-start font-weight-bold text-muted mb-2 demand-dashboard">-->
+<!--                                        <span class="flex d-flex flex-column mb-1">-->
+<!--                                            <span class="text-body demand-dashboard" id="demand-freezer">Freezer</span>-->
+<!--                                        </span>-->
+<!--                <span class="mx-3 demand-dashboard">{{ energy_demand[2] }} kWh</span>-->
+<!--                <span class="d-flex align-items-center demand-dashboard"> 1.4%</span>-->
+<!--            </small>-->
+<!--            <small class="d-flex align-items-start font-weight-bold text-muted mb-2 demand-dashboard">-->
+<!--                                        <span class="flex d-flex flex-column mb-1">-->
+<!--                                            <span class="text-body demand-dashboard" id="demand-refrigerator">Refrigerator</span>-->
+<!--                                        </span>-->
+<!--                <span class="mx-3 demand-dashboard">{{ energy_demand[3] }} kWh</span>-->
+<!--                <span class="d-flex align-items-center demand-dashboard"> 1.4%</span>-->
+<!--            </small>-->
+<!--            <small class="d-flex align-items-start font-weight-bold text-muted">-->
+<!--                                        <span class="flex d-flex flex-column mb-1">-->
+<!--                                            <span class="text-body demand-dashboard" id="demand-washing-machine">Washing Machine</span>-->
+<!--                                        </span>-->
+<!--                <span class="mx-3 demand-dashboard">{{ energy_demand[3] }} kWh</span>-->
+<!--            </small>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="col-lg-4">
+<div class="col-lg-8">
 
     <div class="page-separator">
         <div class="page-separator__text">Monthly Energy Demand</div>
@@ -111,10 +139,11 @@
                 <div class="card-body d-flex flex-row align-items-center flex-0">
                     <div class="h2 mb-0 mr-3">3110.7 kWh</div>
                     <div class="flex">
-                        <div class="card-title">latest month</div>
+<!--                        <div class="card-title">latest month</div>-->
                         <div class="card-subtitle text-50 d-flex align-items-center"><i
                                 class="material-icons text-success icon-16pt ml-4pt">keyboard_arrow_up</i>
-                            3.60% month-to</div>
+                            3.60 % increase from previous month
+                        </div>
                     </div>
 
                 </div>
@@ -122,12 +151,13 @@
                     <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
                         <h3 class="mb-0" style="font-family:Josefin Sans; font-size:24px;">- kWh</h3>
                         <small class="text-uppercase" style="font-family:Josefin Sans; font-size:10px;">MEAN
-                            MONTHLY ENERGY DEMAND</small>
+                            DAILY ENERGY DEMAND</small>
                     </div>
                     <div class="text-50 mb-16pt">
                         <canvas class="chart-canvas js-update-chart-line js-update-chart-area chartjs-render-monitor"
                                 height="500"
-                                id="dashboard-monthly-energy-demand" style="display: block; height: 180px; width: 254px;" width="508">
+                                id="dashboard-monthly-energy-demand"
+                                style="display: block; height: 180px; width: 254px;" width="508">
                         </canvas>
                     </div>
                 </div>

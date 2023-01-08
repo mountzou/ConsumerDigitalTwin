@@ -1,0 +1,372 @@
+<script>
+
+new Chart(document.getElementById("thermal-comfort-indoor-temperature"), {
+    type: 'line',
+    data: {
+      labels: {{ time_arr | safe }},
+      datasets: [
+        {
+            label: "Indoor Air Temperature",
+            borderColor: "rgb(255, 186, 77)",
+            backgroundColor: "rgb(255, 186, 77, .1)",
+            borderWidth: 2,
+            fill: true,
+            data: {{ indoor_temperature_arr | safe }}
+        },
+        {
+            label: "Indoor Mean Radiant Temperature",
+            borderColor: "#7fdd62",
+            backgroundColor: "#7fdd62",
+            borderWidth: 2,
+            fill: false,
+            data: {{ indoor_mr_temperature_arr | safe }}
+        },
+      ]
+    },
+    options: {
+            elements: {
+                point: {
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return tooltipItems.yLabel + ' °C';
+                    }
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: false,
+                        maxTicksLimit: 4,
+                        callback: function(value, index, values) {
+                            return value + ' °C';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Temperature",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 5,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                display: true,
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 1
+                }
+            }
+        }
+});
+
+</script>
+
+<script>
+
+new Chart(document.getElementById("thermal-comfort-indoor-humidity"), {
+    type: 'line',
+    data: {
+      labels: {{ time_arr | safe }},
+      datasets: [
+        {
+            label: "Indoor Relative Humidity",
+            borderColor: "rgb(255, 186, 77)",
+            backgroundColor: "rgb(255, 186, 77, .1)",
+            borderWidth: 2,
+            fill: true,
+            data: {{ indoor_humidity_arr | safe }}
+        }
+      ]
+    },
+    options: {
+            elements: {
+                point: {
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return tooltipItems.yLabel + ' %';
+                    }
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: false,
+                        maxTicksLimit: 4,
+                        callback: function(value, index, values) {
+                            return value + ' %';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Humidity",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 5,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                display: true,
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 1
+                }
+            }
+        }
+});
+
+</script>
+
+<script>
+
+new Chart(document.getElementById("thermal-comfort-indoor-metabolic"), {
+    type: 'line',
+    data: {
+      labels: {{ time_arr | safe }},
+      datasets: [
+        {
+            label: "Metabolic Rate",
+            borderColor: "rgb(255, 186, 77)",
+            backgroundColor: "rgb(255, 186, 77, .1)",
+            borderWidth: 2,
+            fill: true,
+            data: {{ metabolic_arr }}
+        }
+      ]
+    },
+    options: {
+            elements: {
+                point: {
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return tooltipItems.yLabel + ' met';
+                    }
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: false,
+                        max: 1.8,
+                        min: 0.7,
+                        maxTicksLimit: 4,
+                        callback: function(value, index, values) {
+                            return value + ' met';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Metabolic Rate",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 5,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                display: true,
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 1
+                }
+            }
+        }
+});
+
+</script>
+
+<script>
+
+new Chart(document.getElementById("thermal-comfort-indoor"), {
+    type: 'line',
+    data: {
+      labels: {{ time_arr | safe }},
+      datasets: [
+        {
+            label: "Thermal Comfort",
+            borderColor: "EAC7C7",
+            backgroundColor: "EAC7C7",
+            borderWidth: 2,
+            fill: false,
+            data: {{ thermal_comfort_arr }}
+        }
+      ]
+    },
+    options: {
+            elements: {
+                point: {
+                    radius: 1.2
+                }
+            },
+            tooltips: {
+                enabled: false,
+                mode: 'single',
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        if (tooltipItems.yLabel>=0.5 && tooltipItems.yLabel<1.5){ return 'Slightly Warm'; }
+                        else if (tooltipItems.yLabel>=-1.5 && tooltipItems.yLabel<-0.5){ return 'Slightly Cool'; }
+                        else if (tooltipItems.yLabel>=-2.5 && tooltipItems.yLabel<-1.5){ return 'Cool'; }
+                        else if (tooltipItems.yLabel<-2.5){ return 'Cold'; }
+                        else if (tooltipItems.yLabel>=-0.5 && tooltipItems.yLabel<0.5){ return 'Neutral'; }
+                        else if (tooltipItems.yLabel>=1.5 && tooltipItems.yLabel<2.5){ return 'Warm'; }
+                        else if (tooltipItems.yLabel>=2.5){ return 'Hot'; }
+                        else { return tooltipItems.yLabel + ''; }
+                    }
+                }
+            },
+            scales: {
+                pointLabels: {
+                    fontStyle: "bold",
+                },
+                yAxes: [{
+                    ticks: {
+                        padding: 20,
+                        fontSize: 13,
+                        beginAtZero: false,
+                        max: +3.0,
+                        min: -3.0,
+                        maxTicksLimit: 8,
+                        callback: function(value, index, values) {
+                            return value + '';
+                        },
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Thermal Comfort",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawOnChartArea: true
+                    },
+                    ticks: {
+                        fontSize: 13,
+                        padding: 20,
+                        autoSkip: true,
+                        maxTicksLimit: 5,
+                        maxRotation: 0,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Date",
+                        fontStyle: "bold",
+                        fontSize: 14
+                    }
+                }],
+            },
+            legend: {
+                display: true,
+                onClick: (e) => e.stopPropagation(),
+                labels: {
+                    fontSize: 14,
+                    usePointStyle: true,
+                    boxWidth: 1
+                }
+            }
+        }
+});
+
+Chart.defaults.global.defaultFontFamily = 'Josefin Sans';
+
+Chart.Legend.prototype.afterFit = function() {
+    this.height = this.height + 20;
+};
+
+</script>

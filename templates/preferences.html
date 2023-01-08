@@ -33,15 +33,20 @@
                 <div class="col-lg-8 d-flex align-items-center">
                     <div class="flex" style="max-width: 100%">
 
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label" for="preference_thermal_comfort">Thermal
-                                    Scale</label>
-                                <div class="col-sm-9">
-                                    <input id="preference_thermal_comfort" name="preference_thermal_comfort"
-                                           type="text">
-                                </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="preference_thermal_comfort">Thermal
+                                Scale</label>
+                            <div class="col-sm-9">
+                                <input id="preference_thermal_comfort" name="preference_thermal_comfort"
+                                       type="text">
                             </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="form-group form-group-spacer row">
+                <div class="col-sm-12">
+                    <input id="preference_indoor_temperature" name="preference_indoor_temperature" type="text">
                 </div>
             </div>
     </div>
@@ -58,7 +63,66 @@
             <div class="py-32pt text-center text-sm-center">
                 <div class="container d-flex flex-column justify-content-center align-items-center">
                     <h1 class="text-white mb-8pt">Flexible Loads</h1>
-                    <p class="lead text-white measure-lead-max mb-0" style="font-size: 16px;">Insert the priority and the desired time window for each household appliance.</p>
+                    <p class="lead text-white measure-lead-max mb-0" style="font-size: 16px;">Insert the priority and
+                        the desired time window for each household appliance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container page__container page-section">
+
+        <div class="page-separator">
+            <div class="page-separator__text">Priority of each Flexible Load</div>
+        </div>
+
+        <div class="row mb-lg-2pt mt-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <strong>Electric Vehicle</strong>
+                            </div>
+                            <div class="text-100">{{ preferences_simos[0] }} %</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <strong>Washing Machine</strong>
+                            </div>
+                            <div class="text-100">{{ preferences_simos[2] }} %</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <strong>Tumble Drier</strong>
+                            </div>
+                            <div class="text-100">{{ preferences_simos[1] }} %</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex">
+                                <strong>Dish Washer</strong>
+                            </div>
+                            <div class="text-100">{{ preferences_simos[3] }} %</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -186,7 +250,8 @@
                     <div class="flex" style="max-width: 100%">
 
                         <div class="button-list">
-                            <input class="btn btn-outline-primary" id="submit-preferences" type="submit" value="UPDATE PREFERENCES">
+                            <input class="btn btn-outline-primary" id="submit-preferences" type="submit"
+                                   value="UPDATE PREFERENCES">
                         </div>
 
                     </div>
@@ -281,6 +346,16 @@ $(document).ready(function() {
       max: 5,
       from: {{ preferences_importance[2] }},
       values: ["Not Important", "Slightly Important", "Important", "Fairly Important", "Very Important"],
+    }),
+    $("#preference_indoor_temperature").ionRangeSlider({
+      grid: !0,
+      min: 0,
+      step: 1,
+      from: 0,
+      to: 4,
+      type: 'double',
+      max: 5,
+      values: ["16 °C", "17 °C", "18 °C", "19 °C", "20 °C", "21 °C", "22 °C", "23 °C", "24 °C", "25 °C", "26 °C"],
     })
   });
 
